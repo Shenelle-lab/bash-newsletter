@@ -1268,7 +1268,7 @@
   .mantra-section h2 span { color: var(--gold); }
   .mantra-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 16px;
   }
   .mantra-card {
@@ -1281,7 +1281,7 @@
   }
   .mantra-card:nth-child(1) { border-color: var(--pink); }
   .mantra-card:nth-child(2) { border-color: var(--gold); }
-  .mantra-card:nth-child(3) { border-color: var(--purple); grid-column: 1 / -1; }
+  .mantra-card:nth-child(3) { border-color: var(--purple); }
   .mantra-num {
     font-size: 3rem;
     line-height: 0.8;
@@ -1313,7 +1313,6 @@
   .mantra-card p + p { margin-top: 10px; }
   @media (max-width: 560px) {
     .mantra-grid { grid-template-columns: 1fr; }
-    .mantra-card:nth-child(3) { grid-column: auto; }
   }
 
 </style>
