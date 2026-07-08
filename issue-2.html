@@ -1246,6 +1246,76 @@
     .crew-grid { grid-template-columns: 1fr; }
   }
 
+
+  /* ══════════════════════════════
+     BASH MANTRAS — quote-card style
+  ══════════════════════════════ */
+  .mantra-section {
+    background: var(--maroon-dk);
+    padding: 48px 36px;
+  }
+  .mantra-section .section-eyebrow { color: var(--gold); margin-bottom: 10px; }
+  .mantra-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .mantra-section h2 span { color: var(--gold); }
+  .mantra-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .mantra-card {
+    background: rgba(255,255,255,0.07);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 3px solid;
+  }
+  .mantra-card:nth-child(1) { border-color: var(--pink); }
+  .mantra-card:nth-child(2) { border-color: var(--gold); }
+  .mantra-card:nth-child(3) { border-color: var(--purple); grid-column: 1 / -1; }
+  .mantra-num {
+    font-size: 3rem;
+    line-height: 0.8;
+    color: var(--gold);
+    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+  }
+  .mantra-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em;
+    color: #fff !important;
+    margin: 0;
+  }
+  .mantra-card p, .mantra-card li {
+    font-size: 13px !important;
+    color: rgba(255,255,255,0.86) !important;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .mantra-card ul {
+    padding-left: 18px;
+    margin: 6px 0 0 0;
+  }
+  .mantra-card strong { color: var(--gold) !important; }
+  .mantra-card p + p { margin-top: 10px; }
+  @media (max-width: 560px) {
+    .mantra-grid { grid-template-columns: 1fr; }
+    .mantra-card:nth-child(3) { grid-column: auto; }
+  }
+
 </style>
 </head>
 <body>
@@ -1369,59 +1439,44 @@
       </div>
     </div>
 
-    <!-- BASH MANTRAS -->
-    <div class="section-header">
-      <span class="section-eyebrow">Team Culture</span>
-      <h2 class="purple">Bash Mantras &mdash; Explained</h2>
-    </div>
+  </div><!-- end content (wellbeing) -->
 
-    <div class="safety-box" style="margin-bottom: 16px; align-items:flex-start;">
-      <div class="safety-icon" style="margin-top:4px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-        </svg>
-      </div>
-      <div>
-        <h4>1. Be Nice</h4>
+  <!-- BASH MANTRAS (dark) -->
+  <div class="mantra-section">
+    <span class="section-eyebrow">Team Culture</span>
+    <h2>Bash Mantras &mdash; <span>Explained</span></h2>
+    <div class="mantra-grid">
+
+      <div class="mantra-card">
+        <span class="mantra-num">1</span>
+        <h4>Be Nice</h4>
         <p>The Mundi Mundi Bash is an unusual sort of workplace where work and life meld into one for a few weeks of every year. That makes it even more important that crew are happy, engaged and working well together &mdash; so we have policies in place to promote respect and responsibility in the workplace.</p>
-        <p style="margin-top:10px;"><strong>Workplace Harassment, Discrimination and Equal Employment Opportunity Policy</strong></p>
-        <p style="margin-top:6px;">This policy sets out our commitment to making sure everyone feels safe, included and valued, and is able to do their job to the best of their ability. It outlines the responsibility of both the organisation and individual staff members to protect others from discrimination based on any of the protected personal characteristics covered under Federal law in Australia &mdash; including but not limited to sex, race, age, disability and sexual orientation. Among other things, it covers:</p>
-        <ul style="font-size:0.9rem; line-height:1.9; color:var(--text-mid); padding-left:18px; margin:10px 0 0 0;">
+        <p><strong>Workplace Harassment, Discrimination and Equal Employment Opportunity Policy</strong></p>
+        <p>This policy sets out our commitment to making sure everyone feels safe, included and valued, and is able to do their job to the best of their ability. It outlines the responsibility of both the organisation and individual staff members to protect others from discrimination based on any of the protected personal characteristics covered under Federal law in Australia &mdash; including but not limited to sex, race, age, disability and sexual orientation. Among other things, it covers:</p>
+        <ul>
           <li><strong>Bullying</strong> &mdash; can take many forms, including jokes, teasing, nicknames, emails, pictures, text messages, social isolation or ignoring people, or unfair work practices. The great Aussie tradition of the &ldquo;humorous&rdquo; put-down is a bit on the nose at the Bash. You may think it&rsquo;s funny, and the person may play along to save face, but underneath, they&rsquo;re probably feeling like crap. Just don&rsquo;t do it.</li>
           <li><strong>Sexual harassment</strong> &mdash; a specific and serious form of harassment. It is unwelcome sexual behaviour that could be expected to make a person feel offended, humiliated or intimidated. It&rsquo;s irrelevant whether the behaviour was intended to offend, humiliate or intimidate. Sexual harassment can be physical, verbal or in writing. Just because someone doesn&rsquo;t object to inappropriate behaviour at the time doesn&rsquo;t mean they&rsquo;re consenting to it. It&rsquo;s covered when it happens at work, at work-related events, between people sharing the same workplace, or between colleagues outside of work &mdash; and a single incident is enough to constitute sexual harassment; it doesn&rsquo;t have to be repeated.</li>
         </ul>
       </div>
-    </div>
 
-    <div class="safety-box" style="margin-bottom: 16px; align-items:flex-start;">
-      <div class="safety-icon" style="margin-top:4px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-      </div>
-      <div>
-        <h4>2. There&rsquo;s Always Time to Work Safely</h4>
+      <div class="mantra-card">
+        <span class="mantra-num">2</span>
+        <h4>There&rsquo;s Always Time to Work Safely</h4>
         <p>Strains and sprains are the most common injuries in Australian workplaces, usually from lifting, pushing or carrying loads that are too heavy. Team up rather than lifting solo, use machinery when a load is still too heavy (check with your team leader), and if lifting alone, use the <strong>SMART method:</strong> Size up the load, Make sure it&rsquo;s close to your body, Always bend your knees, Raise it with your legs, Turn your feet in the direction you want to move.</p>
-        <p style="margin-top:10px;">The same principle applies around forklifts and heavy machinery &mdash; stay alert, keep eye contact with the operator, watch out for others nearby, never walk behind an operating machine, and never startle an operator. It also applies to loading vehicles (check straps, ropes and fixing points are secure) and to on-site speed limits (<strong>10km/h on site, 5km/h in shared zones</strong>) &mdash; the message throughout is that no task is urgent enough to justify cutting a safety corner.</p>
+        <p>The same principle applies around forklifts and heavy machinery &mdash; stay alert, keep eye contact with the operator, watch out for others nearby, never walk behind an operating machine, and never startle an operator. It also applies to loading vehicles (check straps, ropes and fixing points are secure) and to on-site speed limits (<strong>10km/h on site, 5km/h in shared zones</strong>) &mdash; the message throughout is that no task is urgent enough to justify cutting a safety corner.</p>
       </div>
-    </div>
 
-    <div class="safety-box" style="align-items:flex-start;">
-      <div class="safety-icon" style="margin-top:4px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-          <line x1="12" y1="17" x2="12.01" y2="17"/>
-        </svg>
-      </div>
-      <div>
-        <h4>3. If You Don&rsquo;t Know, Ask!</h4>
+      <div class="mantra-card">
+        <span class="mantra-num">3</span>
+        <h4>If You Don&rsquo;t Know, Ask!</h4>
         <p>Concerns? Report them. Questions? Ask them. Bash promotes a safety culture where staff should feel comfortable questioning things and speaking up. If something doesn&rsquo;t look right or seems like an accident waiting to happen, head to the Event Office and tell a manager &mdash; do whatever it takes to get their attention.</p>
-        <p style="margin-top:10px;">No one expects you to have all the answers, whether it&rsquo;s your first Bash or your tenth. With such a diverse crew, there&rsquo;s likely always someone who can help if you&rsquo;re unsure &mdash; so don&rsquo;t hesitate to ask for a second opinion, whether it&rsquo;s double-checking a trailer hitch or making sure a load is secure. Asking helps maintain safety and quality standards for everyone.</p>
+        <p>No one expects you to have all the answers, whether it&rsquo;s your first Bash or your tenth. With such a diverse crew, there&rsquo;s likely always someone who can help if you&rsquo;re unsure &mdash; so don&rsquo;t hesitate to ask for a second opinion, whether it&rsquo;s double-checking a trailer hitch or making sure a load is secure. Asking helps maintain safety and quality standards for everyone.</p>
       </div>
-    </div>
 
-    <div class="divider"></div>
+    </div>
+  </div>
+
+  <div class="content">
 
     <!-- WHAT TO PACK -->
     <div class="section-header">
