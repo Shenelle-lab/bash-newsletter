@@ -1035,6 +1035,41 @@
   .mantra-card strong { color: var(--wine); font-weight: 700; }
   .mantra-card p + p { margin-top: 14px; }
 
+  .steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .steps-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-family: var(--body);
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .steps-list li .step-num {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 1rem;
+    color: #fff;
+    background: var(--orange);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
   /* ────────────────────────────────────────
      SIGN OFF
   ──────────────────────────────────────── */
@@ -1402,7 +1437,14 @@
         <span class="mantra-num">2</span>
         <h4>There's Always Time to Work Safely</h4>
         <p>Strains and sprains are the most common injuries in Australian workplaces, usually from lifting loads that are too heavy. Team up rather than lifting solo, and use machinery when a load is still too heavy. Check with your team leader.</p>
-        <p>Lifting alone, use the <strong>SMART method.</strong> 1. Size up the load<br>2. Make sure it's close to your body</p>
+        <p>Lifting alone, use the <strong>SMART method.</strong></p>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Size up the load</li>
+          <li><span class="step-num">2</span>Make sure it's close to your body</li>
+          <li><span class="step-num">3</span>Always bend your knees</li>
+          <li><span class="step-num">4</span>Raise it with your legs</li>
+          <li><span class="step-num">5</span>Turn your feet in the direction you want to move</li>
+        </ol>
         <p>Same thinking around forklifts and machinery. Stay alert, keep eye contact with the operator, never walk behind an operating machine, never startle an operator. Same again for loading vehicles and for speed limits (<strong>10km/h on site, 5km/h in shared zones</strong>).</p>
         <p>No task is urgent enough to justify cutting a safety corner.</p>
       </div>
