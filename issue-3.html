@@ -1289,6 +1289,77 @@
     .update-tiles { grid-template-columns: 1fr; }
     .stat-bar { grid-template-columns: 1fr 1fr; }
   }
+
+  /* ────────────────────────────────────────
+     LIGHTBOX
+  ──────────────────────────────────────── */
+  #mmb-lb {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(10,4,4,0.94);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #mmb-lb.open { display: flex; }
+  #mmb-lb-img {
+    max-width: 88vw;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 12px 56px rgba(0,0,0,0.7);
+    transition: opacity 0.15s;
+  }
+  .lb-btn {
+    position: absolute;
+    background: rgba(255,255,255,0.10);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+    line-height: 1;
+    transition: background 0.15s;
+  }
+  .lb-btn:hover { background: rgba(255,255,255,0.22); }
+  #lb-close { top: 18px; right: 20px; font-size: 1.6rem; padding: 8px 14px; }
+  #lb-prev  { top: 50%; left: 18px;  font-size: 2rem; padding: 16px 20px; transform: translateY(-50%); }
+  #lb-next  { top: 50%; right: 18px; font-size: 2rem; padding: 16px 20px; transform: translateY(-50%); }
+  #lb-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 18px;
+  }
+  #lb-counter {
+    font-family: var(--head);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    min-width: 60px;
+    text-align: center;
+  }
+  #lb-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange);
+    color: #fff;
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 11px 22px;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+  #lb-dl:hover { background: var(--red); color: #fff; }
+  .gallery-photo { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -1408,32 +1479,32 @@
 
   <div style="background:#fff;padding:32px 28px 20px;">
     <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:220px;gap:18px;">
-      <img src="photos/crew-01.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-02.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-03.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-04.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-05.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-06.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-07.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);grid-row:span 2;">
-      <img src="photos/crew-08.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-09.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-10.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-11.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-12.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-13.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-14.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-15.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-16.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-17.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-18.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);grid-row:span 2;">
-      <img src="photos/crew-19.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);grid-row:span 2;">
-      <img src="photos/crew-20.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-21.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-22.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-23.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-24.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-25.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
-      <img src="photos/crew-26.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-01.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-02.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-03.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-04.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-05.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-06.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-07.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);grid-row:span 2;">
+      <img class="gallery-photo" src="photos/crew-08.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-09.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-10.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-11.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-12.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-13.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-14.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-15.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-16.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-17.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-18.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);grid-row:span 2;">
+      <img class="gallery-photo" src="photos/crew-19.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);grid-row:span 2;">
+      <img class="gallery-photo" src="photos/crew-20.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-21.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-22.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-23.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-24.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-25.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-26.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
     </div>
   </div>
 
@@ -1637,5 +1708,77 @@
   </div>
 
 </div>
+
+<!-- ────────── LIGHTBOX ────────── -->
+<div id="mmb-lb">
+  <button class="lb-btn" id="lb-close" onclick="lbClose()">&#x2715;</button>
+  <button class="lb-btn" id="lb-prev"  onclick="lbNav(-1)">&#8249;</button>
+  <img id="mmb-lb-img" src="" alt="Crew photo">
+  <button class="lb-btn" id="lb-next"  onclick="lbNav(1)">&#8250;</button>
+  <div id="lb-bar">
+    <span id="lb-counter"></span>
+    <a id="lb-dl" href="" download>&#8595; Download Photo</a>
+  </div>
+</div>
+<script>
+(function(){
+  var photos = [];
+  var idx = 0;
+  var lb    = document.getElementById('mmb-lb');
+  var lbImg = document.getElementById('mmb-lb-img');
+  var lbDl  = document.getElementById('lb-dl');
+  var lbCnt = document.getElementById('lb-counter');
+
+  function init(){
+    photos = Array.from(document.querySelectorAll('.gallery-photo'));
+    photos.forEach(function(img, i){
+      img.addEventListener('click', function(){ lbOpen(i); });
+    });
+  }
+
+  function lbOpen(i){
+    idx = i;
+    lbShow();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function lbShow(){
+    var src = photos[idx].src;
+    lbImg.src = src;
+    lbDl.href = src;
+    lbDl.setAttribute('download', src.split('/').pop());
+    lbCnt.textContent = (idx+1) + ' / ' + photos.length;
+  }
+
+  function lbNav(dir){
+    idx = (idx + dir + photos.length) % photos.length;
+    lbShow();
+  }
+
+  function lbClose(){
+    lb.classList.remove('open');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  lb.addEventListener('click', function(e){ if(e.target === lb) lbClose(); });
+
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape')     lbClose();
+    if(e.key==='ArrowLeft')  lbNav(-1);
+    if(e.key==='ArrowRight') lbNav(1);
+  });
+
+  window.lbClose = lbClose;
+  window.lbNav   = lbNav;
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
+
 </body>
 </html>
