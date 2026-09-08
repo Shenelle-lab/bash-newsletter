@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bash Staff News · Issue 3 · Crew Newsletter 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ────────────────────────────────────────
+     MMB 2026 BRAND TOKENS
+  ──────────────────────────────────────── */
+  :root {
+    --pink:      #ef62a4;
+    --red:       #f04c24;
+    --yellow:    #fdd700;
+    --orange:    #f38720;
+    --dark:      #421718;
+
+    --gold:      #fdd700;
+    --gold-lt:   #ffe95c;
+    --coral:     #f38720;
+    --wine:      #421718;
+    --maroon:    #421718;
+    --deep:      #421718;
+
+    --cream:     #f7f0e6;
+    --cream-lt:  #fdf6e8;
+    --off-white: #f1ebe2;
+    --sand:      #e4d7c4;
+    --text:      #421718;
+    --text-mid:  #5c3634;
+
+    --body-size: 1rem;
+
+    --head: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    --body: 'Work Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  img { max-width: 100%; }
+
+  body {
+    background: #f1ebe2;
+    font-family: var(--body);
+    color: var(--text);
+    font-size: var(--body-size);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mmb-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--off-white);
+  }
+
+  a { color: var(--wine); }
+
+  /* ────────────────────────────────────────
+     RAINBOW STRIPE
+  ──────────────────────────────────────── */
+  .rainbow-stripe { display: flex; height: 8px; width: 100%; }
+  .rainbow-stripe span { flex: 1; }
+  .rs-pink   { background: var(--pink); }
+  .rs-red    { background: var(--red); }
+  .rs-orange { background: var(--orange); }
+  .rs-yellow { background: var(--yellow); }
+
+  /* ────────────────────────────────────────
+     MASTHEAD
+  ──────────────────────────────────────── */
+  .masthead {
+    background: var(--deep);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead-photo {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/images/e2989c8b-98fc-99ef-6100-893579a4bb37.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    opacity: 0.8;
+  }
+
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(28,10,0,0.30) 0%, rgba(28,10,0,0.55) 60%, rgba(28,10,0,0.85) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 11px 32px;
+    border-bottom: 1px solid rgba(249,173,28,0.25);
+    position: relative;
+    z-index: 2;
+  }
+
+  .masthead-top span {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .masthead-logo {
+    display: block;
+    height: 44px;
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  .masthead-body {
+    padding: 34px 32px 30px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+
+  .masthead-title {
+    flex: 1;
+    min-width: 0;
+    padding-bottom: 4px;
+  }
+
+  .masthead-title img {
+    display: block;
+    width: 100%;
+    max-width: 470px;
+    height: auto;
+    border: 0;
+  }
+
+  .masthead-side {
+    width: 200px;
+    padding: 0 0 18px 20px;
+    text-align: right;
+    position: relative;
+    z-index: 2;
+  }
+
+  .masthead-side .year-big {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--orange);
+    display: block;
+    letter-spacing: 0.02em;
+  }
+
+  .masthead-side .tagline {
+    font-family: var(--head);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    display: block;
+    margin-top: 10px;
+    line-height: 1.7;
+  }
+
+  /* ────────────────────────────────────────
+     STAT BAR
+  ──────────────────────────────────────── */
+  .stat-bar {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--sand);
+    padding: 8px 20px 4px;
+  }
+
+  .stat-bar-item {
+    padding: 24px 14px 26px;
+    text-align: center;
+  }
+
+  .stat-bar-item .stat-rule {
+    display: block;
+    width: 30px;
+    height: 4px;
+    margin: 0 auto 16px;
+    border-radius: 2px;
+  }
+
+  .stat-bar-item:nth-child(1) .stat-rule { background: var(--pink); }
+  .stat-bar-item:nth-child(2) .stat-rule { background: var(--red); }
+  .stat-bar-item:nth-child(3) .stat-rule { background: var(--orange); }
+  .stat-bar-item:nth-child(4) .stat-rule { background: var(--yellow); }
+
+  .stat-bar-item .stat-num {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--dark);
+    display: block;
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .stat-bar-item .stat-lbl {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8a7168;
+    display: block;
+    margin-top: 9px;
+  }
+
+  /* ────────────────────────────────────────
+     WELCOME HERO
+  ──────────────────────────────────────── */
+  .welcome-hero {
+    background: var(--cream-lt);
+    padding: 56px 40px 58px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .welcome-hero::before {
+    content: '';
+    position: absolute;
+    top: -110px; right: -110px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(243,135,32,0.07);
+  }
+
+  .welcome-hero > * { position: relative; z-index: 1; }
+
+  .welcome-hero .hero-rule {
+    display: block;
+    width: 64px;
+    height: 5px;
+    background: var(--red);
+    margin: 0 0 26px;
+    border-radius: 3px;
+  }
+
+  .section-eyebrow {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--pink);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-eyebrow.on-dark { color: var(--gold); }
+  .welcome-hero .section-eyebrow { color: var(--pink); }
+
+  .welcome-hero h2 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+    color: var(--dark);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .welcome-hero p {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    line-height: 1.85;
+    color: var(--text-mid);
+    margin-bottom: 16px;
+    max-width: 640px;
+  }
+
+  .welcome-hero p:last-child { margin-bottom: 0; }
+  .welcome-hero p strong { color: var(--red); font-weight: 700; }
+
+  .welcome-hero.light {
+    background: var(--cream-lt);
+    border-left: 8px solid var(--orange);
+    border-top: 1px solid #e4d7c4;
+    border-bottom: 1px solid #e4d7c4;
+  }
+
+  .welcome-hero.light::before { background: rgba(249,153,28,0.08); }
+  .welcome-hero.light .section-eyebrow { color: var(--pink); }
+  .welcome-hero.light h2 { color: var(--wine); }
+  .welcome-hero.light p { color: var(--text-mid); }
+
+  /* ────────────────────────────────────────
+     DOODLES
+  ──────────────────────────────────────── */
+  .doodle {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    opacity: 0.09;
+    filter: brightness(0);
+  }
+
+  .doodle.on-dark {
+    filter: brightness(0) invert(1);
+    opacity: 0.11;
+  }
+
+  .doodle-camper { width: 230px; right: 26px;  bottom: -18px; transform: rotate(-5deg); }
+  .doodle-cacti  { width: 130px; right: 40px;  bottom: -10px; transform: rotate(4deg); }
+  .doodle-heart  { width: 150px; right: 44px;  top: 30px;     transform: rotate(9deg); }
+  .doodle-heart3 { width: 180px; left: 30px;   bottom: -24px; transform: rotate(-8deg); }
+
+  @media (max-width: 760px) {
+    .doodle-camper { width: 140px; right: -10px; }
+    .doodle-cacti  { width: 84px;  right: 10px; }
+    .doodle-heart  { width: 92px;  right: 14px; top: 16px; }
+    .doodle-heart3 { width: 110px; left: -14px; }
+  }
+
+  /* ────────────────────────────────────────
+     PHOTO BAND
+  ──────────────────────────────────────── */
+  .photo-band { font-size: 0; line-height: 0; }
+
+  .photo-band img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    object-position: center 55%;
+    display: block;
+  }
+
+  @media (max-width: 760px) {
+    .photo-band img { height: 220px; }
+  }
+
+  /* ────────────────────────────────────────
+     LAYOUT
+  ──────────────────────────────────────── */
+  .content { padding: 0 36px 40px; }
+  .content.alt-bg  { background: var(--cream); }
+  .content.lite-bg { background: var(--cream-lt); }
+
+  .content p {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: 15px;
+  }
+
+  .content p strong { color: var(--wine); font-weight: 600; }
+
+  .content ul {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    line-height: 1.9;
+    color: var(--text-mid);
+    padding-left: 22px;
+    margin-bottom: 18px;
+  }
+
+  .content ul li::marker { color: var(--orange); }
+
+  .two-col   { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  /* ────────────────────────────────────────
+     SECTION HEADERS
+  ──────────────────────────────────────── */
+  .section-header {
+    padding: 34px 0 14px;
+    border-bottom: 3px solid var(--maroon);
+    margin-bottom: 22px;
+  }
+
+  .section-header h2 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--wine);
+  }
+
+  .section-header h2.pink   { color: var(--pink); }
+  .section-header h2.orange { color: var(--orange); }
+  .section-header h2.maroon { color: var(--wine); }
+  .section-header h2.gold   { color: var(--red); }
+
+  /* ────────────────────────────────────────
+     HIGHLIGHT BAND
+  ──────────────────────────────────────── */
+  .highlight-band {
+    background: var(--red);
+    padding: 20px 28px 20px 34px;
+    margin: 22px 0;
+    position: relative;
+  }
+
+  .highlight-band::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: var(--gold);
+  }
+
+  .highlight-band p {
+    font-family: var(--body);
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ────────────────────────────────────────
+     ALERT BOX
+  ──────────────────────────────────────── */
+  .alert-box {
+    background: var(--wine);
+    color: #fff;
+    padding: 26px 28px;
+    margin: 22px 0;
+    border-left: 6px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .alert-box::after {
+    content: '!';
+    position: absolute;
+    right: 20px; top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 150px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .alert-box h3 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .alert-box p {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    line-height: 1.75;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .alert-box p:last-child { margin-bottom: 0; }
+  .alert-box p strong { color: var(--gold-lt); font-weight: 600; }
+
+  /* ────────────────────────────────────────
+     UPDATE TILES
+  ──────────────────────────────────────── */
+  .update-tiles {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+    margin: 18px 0;
+  }
+
+  .update-tile {
+    background: #fff;
+    padding: 22px 20px 20px;
+    border-top: 4px solid var(--pink);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .update-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(61,26,24,0.12);
+  }
+
+  .update-tile:nth-child(1) { border-top-color: var(--pink); }
+  .update-tile:nth-child(2) { border-top-color: var(--orange); }
+  .update-tile:nth-child(3) { border-top-color: var(--yellow); }
+  .update-tile:nth-child(4) { border-top-color: var(--gold); }
+
+  .update-tile .tile-num {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 38px;
+    line-height: 1;
+    color: var(--sand);
+    float: right;
+    margin-left: 10px;
+  }
+
+  .update-tile h4 {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wine);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .update-tile p,
+  .update-tile li {
+    font-family: var(--body);
+    font-size: 0.93rem;
+    line-height: 1.75;
+    color: var(--text-mid);
+  }
+
+  .update-tile ul { padding-left: 18px; margin: 0; }
+  .update-tile ul li { margin-bottom: 7px; }
+  .update-tile ul li::marker { color: var(--orange); }
+  .update-tile p { margin-bottom: 10px; clear: both; }
+
+  .tile-photo {
+    overflow: hidden;
+    min-height: 260px;
+    background: var(--maroon);
+    border-top: 4px solid var(--red);
+  }
+
+  .tile-photo img {
+    width: 100%;
+    height: 100%;
+    min-height: 256px;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+
+  .packing-image {
+    margin: 20px 0 0;
+    font-size: 0;
+    line-height: 0;
+    box-shadow: 0 6px 24px rgba(61,26,24,0.12);
+  }
+
+  .packing-image img { width: 100%; height: auto; display: block; }
+
+  /* ────────────────────────────────────────
+     DOWNLOAD CARD
+  ──────────────────────────────────────── */
+  .download-card {
+    background: var(--maroon);
+    border-left: 6px solid var(--gold);
+    padding: 32px 32px;
+    margin: 22px 0 8px;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+  }
+
+  .download-icon {
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .download-icon svg { width: 30px; height: 30px; }
+
+  .download-label {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .download-body p {
+    font-family: var(--body);
+    font-size: 1.02rem;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.7;
+    margin: 0 0 16px;
+  }
+
+  .download-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--deep);
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 4px;
+  }
+
+  .download-btn:hover { background: var(--gold-lt); }
+
+  /* ────────────────────────────────────────
+     SAFETY / TIP BOX
+  ──────────────────────────────────────── */
+  .safety-box {
+    background: #fdf6e8;
+    border-left: 5px solid var(--gold);
+    padding: 20px 24px;
+    margin: 22px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .safety-icon {
+    width: 52px; height: 52px;
+    background: var(--maroon);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .safety-icon svg { width: 26px; height: 26px; }
+
+  .safety-box h4 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wine);
+    margin-bottom: 6px;
+  }
+
+  .safety-box p {
+    font-family: var(--body);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-mid);
+    margin: 0;
+  }
+
+  /* ────────────────────────────────────────
+     COMMS CARDS
+  ──────────────────────────────────────── */
+  .comms-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 18px 0;
+  }
+
+  .comms-card {
+    padding: 20px;
+    border-top: 4px solid;
+    background: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .comms-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 26px rgba(61,26,24,0.12);
+  }
+
+  .comms-card.fb    { border-top-color: var(--pink); }
+  .comms-card.email { border-top-color: var(--orange); }
+  .comms-card.wa    { border-top-color: var(--red); }
+
+  .comms-card .icon-row {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 10px;
+  }
+
+  .comms-card .platform-icon {
+    width: 38px; height: 38px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .comms-card.fb    .platform-icon { background: var(--pink); }
+  .comms-card.email .platform-icon { background: var(--orange); }
+  .comms-card.wa    .platform-icon { background: var(--red); }
+
+  .comms-card .platform-icon svg { width: 20px; height: 20px; }
+
+  .comms-card h4 {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--maroon);
+  }
+
+  .comms-card p {
+    font-family: var(--body);
+    font-size: 0.93rem;
+    line-height: 1.75;
+    color: var(--text-mid);
+    margin-top: 10px;
+  }
+
+  .comms-card a { font-weight: 600; text-decoration: underline; }
+
+  /* ────────────────────────────────────────
+     FEATURE CARD (heli)
+  ──────────────────────────────────────── */
+  .feature-card {
+    background: #fff;
+    border-top: 4px solid var(--yellow);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(66,23,24,0.10);
+  }
+
+  .feature-photo { font-size: 0; line-height: 0; min-width: 0; overflow: hidden; }
+
+  .feature-photo img {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .feature-text {
+    min-width: 0;
+    padding: 34px 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .feature-card .feature-icon {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .feature-card .feature-icon svg { width: 30px; height: 30px; }
+
+  .feature-card .lead {
+    font-family: var(--body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--maroon);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .feature-card .lead .price { color: var(--red); font-weight: 700; }
+
+  .feature-card p {
+    font-family: var(--body);
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+
+  .feature-card .booking {
+    font-family: var(--head);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wine);
+    margin: 0;
+  }
+
+  /* ────────────────────────────────────────
+     TO-DO BOX
+  ──────────────────────────────────────── */
+  .todo-box {
+    background: var(--maroon);
+    border-left: 6px solid var(--gold);
+    padding: 28px 30px;
+    margin: 4px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .todo-box > * { position: relative; z-index: 1; }
+
+  .todo-box::after {
+    content: '✓';
+    position: absolute;
+    right: 18px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 150px;
+    line-height: 1;
+    color: rgba(255,255,255,0.05);
+    z-index: 0;
+  }
+
+  .todo-box h3 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .todo-box p {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    color: rgba(255,255,255,0.92);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .todo-box .todo-lead {
+    font-family: var(--head);
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 10px;
+  }
+
+  .todo-box ul { list-style: none; padding: 0; margin: 0 0 18px; }
+
+  .todo-box ul li {
+    font-family: var(--body);
+    font-size: 0.98rem;
+    color: #fff;
+    line-height: 1.7;
+    padding: 5px 0 5px 30px;
+    position: relative;
+  }
+
+  .todo-box ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .todo-box p:last-child { margin-bottom: 0; }
+
+  /* ────────────────────────────────────────
+     CREW VILLAGE GRID
+  ──────────────────────────────────────── */
+  .crew-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 28px;
+  }
+
+  .crew-card {
+    background: #fff;
+    padding: 24px 20px;
+    border-top: 4px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .crew-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(61,26,24,0.16);
+  }
+
+  .crew-card:nth-child(4n+1) { border-color: var(--pink); }
+  .crew-card:nth-child(4n+2) { border-color: var(--red); }
+  .crew-card:nth-child(4n+3) { border-color: var(--orange); }
+  .crew-card:nth-child(4n+4) { border-color: var(--yellow); }
+
+  .crew-card-icon { line-height: 0; }
+  .crew-card-icon svg { width: 30px; height: 30px; }
+
+  .crew-card-name {
+    font-family: var(--head);
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--maroon);
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+  }
+
+  .crew-card-desc {
+    font-family: var(--body);
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    flex: 1;
+  }
+
+  .crew-card-note {
+    display: inline-block;
+    font-family: var(--head);
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 5px 11px;
+    border-radius: 30px;
+    background: #fdf6e8;
+    color: var(--wine);
+    align-self: flex-start;
+  }
+
+  /* ────────────────────────────────────────
+     BASH MANTRAS
+  ──────────────────────────────────────── */
+  .mantra-section {
+    background: var(--cream);
+    padding: 64px 36px;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid #e4d7c4;
+    border-bottom: 1px solid #e4d7c4;
+  }
+
+  .mantra-section h2 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+    text-transform: uppercase;
+    color: var(--wine);
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    margin-bottom: 34px;
+  }
+
+  .mantra-section h2 span { color: var(--orange); }
+
+  .mantra-section .section-eyebrow,
+  .mantra-section h2,
+  .mantra-grid { position: relative; z-index: 1; }
+
+  .mantra-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+
+  .mantra-card {
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(61,26,24,0.07);
+    padding: 40px 38px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-top: 5px solid;
+  }
+
+  .mantra-card:nth-child(1) { border-color: var(--pink); }
+  .mantra-card:nth-child(2) { border-color: var(--orange); }
+  .mantra-card:nth-child(3) { border-color: var(--red); }
+
+  .mantra-num {
+    font-family: var(--head);
+    font-size: 4.4rem;
+    line-height: 0.8;
+    font-weight: 900;
+    display: block;
+  }
+
+  .mantra-card:nth-child(1) .mantra-num { color: var(--pink); }
+  .mantra-card:nth-child(2) .mantra-num { color: var(--orange); }
+  .mantra-card:nth-child(3) .mantra-num { color: var(--red); }
+
+  .mantra-card h4 {
+    font-family: var(--head);
+    font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.15;
+    color: var(--wine);
+    margin: 0 0 4px;
+  }
+
+  .mantra-card p,
+  .mantra-card li {
+    font-family: var(--body);
+    font-size: 1.06rem;
+    color: var(--text-mid);
+    line-height: 1.85;
+    margin: 0;
+  }
+
+  .mantra-card ul { padding-left: 20px; margin: 6px 0 0; }
+  .mantra-card ul li { margin-bottom: 16px; }
+  .mantra-card ul li::marker { color: var(--orange); }
+  .mantra-card strong { color: var(--wine); font-weight: 700; }
+  .mantra-card p + p { margin-top: 14px; }
+
+  .steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .steps-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-family: var(--body);
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .steps-list li .step-num {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 1rem;
+    color: #fff;
+    background: var(--orange);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  /* ────────────────────────────────────────
+     SIGN OFF
+  ──────────────────────────────────────── */
+  .signoff {
+    background: var(--dark);
+    padding: 52px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .signoff .signoff-line,
+  .signoff p { position: relative; z-index: 1; }
+
+  .signoff .signoff-line {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .signoff .signoff-line span { color: var(--gold); }
+
+  .signoff p {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    color: rgba(255,255,255,0.9);
+    line-height: 1.8;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  /* ────────────────────────────────────────
+     ACKNOWLEDGEMENT OF COUNTRY
+  ──────────────────────────────────────── */
+  .acknowledgement {
+    background: var(--cream);
+    padding: 30px 36px;
+    text-align: center;
+  }
+
+  .acknowledgement span {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--wine);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .acknowledgement p {
+    font-family: var(--body);
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: var(--text-mid);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  /* ────────────────────────────────────────
+     FOOTER
+  ──────────────────────────────────────── */
+  .footer { background: var(--deep); }
+
+  .footer-body {
+    padding: 30px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .footer-brand .brand-name {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #fff;
+    display: block;
+    line-height: 1.5;
+  }
+
+  .footer-brand .brand-name span { color: var(--gold); }
+
+  .footer-brand .brand-sub {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    margin-top: 8px;
+    display: block;
+  }
+
+  .footer-center { text-align: center; }
+  .footer-center svg { width: 54px; height: 54px; opacity: 0.85; }
+
+  .footer-contact { text-align: right; }
+
+  .footer-contact p {
+    font-family: var(--body);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.75);
+    line-height: 2;
+    margin: 0;
+  }
+
+  .footer-contact a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .footer-bottom {
+    background: rgba(0,0,0,0.35);
+    padding: 11px 32px;
+    text-align: center;
+    font-family: var(--head);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+  }
+
+  /* ────────────────────────────────────────
+     PHOTO STRIP
+  ──────────────────────────────────────── */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    font-size: 0;
+    line-height: 0;
+  }
+
+  .photo-strip img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ────────────────────────────────────────
+     RESPONSIVE
+  ──────────────────────────────────────── */
+  @media (max-width: 760px) {
+    .masthead-top { padding: 10px 20px; flex-wrap: wrap; gap: 6px; }
+    .masthead-top span { font-size: 10px; letter-spacing: 0.18em; }
+    .masthead-logo { height: 32px; }
+    .masthead-body { flex-direction: column; align-items: flex-start; padding: 26px 20px 24px; }
+    .masthead-title img { max-width: 100%; }
+    .masthead-side { width: 100%; text-align: left; padding: 14px 0 16px; }
+    .masthead-side .year-big { font-size: 46px; }
+
+    .stat-bar { grid-template-columns: 1fr 1fr; }
+    .stat-bar-item:nth-child(2) { border-right: none; }
+    .stat-bar-item:nth-child(1),
+    .stat-bar-item:nth-child(2) { border-bottom: 1px solid #e4d7c4; }
+    .stat-bar-item { padding: 20px 12px; }
+
+    .welcome-hero,
+    .mantra-section,
+    .signoff,
+    .acknowledgement { padding-left: 22px; padding-right: 22px; }
+
+    .welcome-hero { padding: 40px 22px 42px; }
+    .mantra-section { padding-top: 40px; padding-bottom: 40px; }
+
+    .content { padding: 0 22px 32px; }
+
+    .comms-cards,
+    .two-col,
+    .three-col { grid-template-columns: 1fr; }
+
+    .update-tiles { gap: 12px; }
+    .update-tile { padding: 18px 16px 16px; }
+    .update-tile p, .update-tile li { font-size: 0.86rem; }
+    .tile-photo, .tile-photo img { min-height: 200px; }
+
+    .mantra-section { padding: 44px 22px; }
+    .mantra-card { padding: 30px 24px; }
+    .mantra-card p, .mantra-card li { font-size: 1rem; }
+    .mantra-num { font-size: 3.4rem; }
+
+    .crew-grid { grid-template-columns: 1fr 1fr; }
+
+    .feature-card { grid-template-columns: 1fr; }
+    .feature-photo img { min-height: 210px; }
+    .feature-text { flex-direction: column; gap: 16px; padding: 26px 22px; }
+    .download-card { flex-direction: column; align-items: flex-start; gap: 18px; padding: 26px 22px; }
+
+    .safety-box { flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px; }
+
+    .photo-strip { grid-template-columns: 1fr; }
+    .photo-strip img { height: 220px; }
+
+    .footer-body { grid-template-columns: 1fr; text-align: center; gap: 18px; }
+    .footer-contact { text-align: center; }
+    .footer-bottom { letter-spacing: 0.16em; font-size: 8px; }
+
+    .alert-box::after,
+    .todo-box::after { display: none; }
+  }
+
+  @media (max-width: 430px) {
+    .crew-grid { grid-template-columns: 1fr; }
+    .update-tiles { grid-template-columns: 1fr; }
+    .stat-bar { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="mmb-wrap">
+
+  <!-- ────────── MASTHEAD ────────── -->
+  <div class="masthead">
+    <div class="masthead-photo"></div>
+    <div class="masthead-top">
+      <span>Crew Newsletter</span>
+      <img class="masthead-logo" src="https://mundimundibash.com.au/wp-content/uploads/2022/03/MMB26_Logo_for-Web-2.svg" alt="Mundi Mundi Bash">
+    </div>
+    <div class="masthead-body">
+      <div class="masthead-title">
+        <img src="https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/images/dfd3fa7d-7b7f-9e5b-c5dd-dc311fc2d367.png"
+             alt="Bash Staff News">
+      </div>
+      <div class="masthead-side">
+        <span class="year-big">2026</span>
+        <span class="tagline">Latest &amp; Trusted<br>News from the Plains</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rainbow-stripe">
+    <span class="rs-pink"></span><span class="rs-red"></span>
+    <span class="rs-orange"></span><span class="rs-yellow"></span>
+  </div>
+
+  <!-- ────────── STAT BAR ────────── -->
+  <div class="stat-bar">
+    <div class="stat-bar-item">
+      <span class="stat-rule"></span>
+      <span class="stat-num">2026</span>
+      <span class="stat-lbl">Season</span>
+    </div>
+    <div class="stat-bar-item">
+      <span class="stat-rule"></span>
+      <span class="stat-num">Issue 3</span>
+      <span class="stat-lbl">Newsletter</span>
+    </div>
+    <div class="stat-bar-item">
+      <span class="stat-rule"></span>
+      <span class="stat-num">Crew Camp</span>
+      <span class="stat-lbl">Guide Inside</span>
+    </div>
+    <div class="stat-bar-item">
+      <span class="stat-rule"></span>
+      <span class="stat-num">Gold</span>
+      <span class="stat-lbl">NSW Tourism Award</span>
+    </div>
+  </div>
+
+
+  <!-- ────────── THANK YOU ────────── -->
+  <div style="background: var(--dark); padding: 52px 40px 56px; position: relative; overflow: hidden; text-align: center;">
+    <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(to right, var(--pink), var(--red), var(--orange), var(--yellow));"></div>
+    <span style="font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:18px;">To the 2026 Crew</span>
+    <h2 style="font-family:var(--head);font-weight:900;font-size:clamp(2rem,4.5vw,3.2rem);text-transform:uppercase;color:#fff;letter-spacing:0.01em;line-height:1.1;margin-bottom:28px;">Thank <span style="color:var(--gold);">You.</span></h2>
+    <p style="font-family:var(--body);font-size:1.08rem;line-height:1.9;color:rgba(255,255,255,0.88);max-width:620px;margin:0 auto 18px;">One of the toughest Mundi Mundi Bashes we've ever run, and you never once lost the attitude that makes this event what it is. Every decision made with our Bashers front of mind, every day pushed a bit further than the last.</p>
+    <p style="font-family:var(--head);font-weight:900;font-size:1.35rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--gold);margin:0;">Every one of you should be proud of this one.</p>
+  </div>
+
+  <!-- ────────── CREW SURVEY ────────── -->
+  <div style="background:var(--cream-lt);padding:52px 40px;border-left:8px solid var(--pink);border-top:1px solid var(--sand);border-bottom:1px solid var(--sand);position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-90px;right:-90px;width:280px;height:280px;border-radius:50%;background:rgba(239,98,164,0.07);"></div>
+    <div style="position:relative;z-index:1;">
+      <span style="font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:0.24em;text-transform:uppercase;color:var(--pink);display:block;margin-bottom:12px;">Crew Survey Feedback</span>
+      <h2 style="font-family:var(--head);font-weight:900;font-size:clamp(1.8rem,3.8vw,2.6rem);color:var(--dark);line-height:1.1;margin-bottom:20px;text-transform:uppercase;letter-spacing:0.01em;">Now We Want to <span style="color:var(--red);">Hear From You!</span></h2>
+      <p style="font-family:var(--body);font-size:1rem;line-height:1.85;color:var(--text-mid);margin-bottom:14px;max-width:640px;">We're always looking for ways to make the Bash even better &amp; better (as Greg Donovan would say!). Your experience behind the scenes gives us invaluable insight into what worked and what we can improve.</p>
+      <p style="font-family:var(--body);font-size:1rem;line-height:1.85;color:var(--text-mid);margin-bottom:28px;max-width:640px;">Our volunteer survey takes around 5–10 minutes and we'd love you to tell us what you really think. Your feedback will help shape the volunteer experience for future Bashes.</p>
+      <a href="#" style="display:inline-block;background:var(--pink);color:#fff;font-family:var(--head);font-weight:800;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:16px 34px;border-radius:4px;">Take the Survey →</a>
+    </div>
+  </div>
+
+  <!-- ────────── WELCOME ────────── -->
+  <div class="welcome-hero">
+    <img class="doodle doodle-camper" src="https://mundimundibash.com.au/wp-content/uploads/2026/03/camper2.png" alt="" aria-hidden="true">
+    <span class="hero-rule"></span>
+    <span class="section-eyebrow">Newsletter 3 · 2026 Season</span>
+    <h2>Healthy Crew, <span style="color:var(--red);">Happy Camp</span></h2>
+    <p>Life at the Mundi Mundi Bash is a little different. For a few weeks each year, crew camp becomes both our workplace and our home.</p>
+    <p>This newsletter covers everything you need to know about looking after yourself and your fellow crew members, what to pack, and what to expect while living in crew camp.</p>
+    <p>Whether it's your first Bash or you're a seasoned crewbie, it's worth taking a few minutes to read through before heading to the plains.</p>
+  </div>
+
+  <!-- ────────── WELLBEING ────────── -->
+  <div class="content">
+
+    <div class="section-header">
+      <span class="section-eyebrow">Wellbeing &amp; Safety</span>
+      <h2 class="maroon">Looking After Yourself at the Bash</h2>
+    </div>
+
+    <div class="highlight-band">
+      <p>It's more important than ever that crew are happy, engaged and working well together, so here's what you need to know about staying safe, healthy and looking out for one another.</p>
+    </div>
+
+    <div class="alert-box">
+      <h3>Fitness for Work</h3>
+      <p>This policy outlines the organisation's responsibility to make sure that staff are able to manage their own psychological and physical health, and staff's responsibility to ensure that their behaviour doesn't compromise the safety of anyone else on site.</p>
+      <p>Staff need to turn up to work clear headed and free of the influence of alcohol and illegal drugs. Here are some ways you can do that.</p>
+    </div>
+
+    <div class="update-tiles">
+
+      <div class="update-tile">
+        <div class="tile-num">01</div>
+        <h4>Managing Stress &amp; Fatigue</h4>
+        <ul>
+          <li>Get plenty of sleep. Pack ear buds and an eye mask if that's what you need.</li>
+          <li>Take scheduled breaks.</li>
+          <li>Recognise if you're too tired, or one of your colleagues is too tired, and let your supervisor know.</li>
+          <li>Let your team leader or a manager know if you have a mental health condition that might affect your ability to manage your job.</li>
+        </ul>
+      </div>
+
+      <div class="update-tile">
+        <div class="tile-num">02</div>
+        <h4>Managing Your Health &amp; Physical Capacity</h4>
+        <p>Working long hours in remote locations, in physically strenuous jobs and managing competing priorities, can take a toll on your body. We're relying on you to:</p>
+        <ul>
+          <li>Be realistic about your physical capacity and decline jobs if you think taking them on would put yourself or others at risk. We can find something else for you to do.</li>
+          <li>Stop work and tell your supervisor if you feel unwell. It's not worth the risk to yourself and others.</li>
+          <li>Bring appropriate clothing (wet weather gear, warm bedding) to help you manage the weather conditions.</li>
+          <li>Bring any medications you might need to stay healthy.</li>
+        </ul>
+      </div>
+
+      <div class="update-tile">
+        <div class="tile-num">03</div>
+        <h4>Don't Be Under the Influence</h4>
+        <ul>
+          <li>Don't use alcohol while you're working, and comply with all state and federal laws in relation to illegal drugs. Police are on site, and if we're concerned, we may request that you undertake a blood alcohol or drug test.</li>
+          <li>Heavy drinking while off duty may also mean a raised blood alcohol reading the following day, so be careful. It might also mean you're unable to help if a situation crops up after hours.</li>
+          <li>If it's clear that you're on shift under the influence of alcohol or illegal drugs, your employment may be terminated and you may be asked to leave the site.</li>
+        </ul>
+      </div>
+
+      <div class="tile-photo">
+        <img src="https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/images/d7195e90-76e6-75b4-5ce0-35bc0765b777.jpg"
+             alt="Crew member giving the thumbs up on site">
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ────────── BASH MANTRAS ────────── -->
+  <div class="mantra-section">
+    <img class="doodle doodle-heart" src="https://mundimundibash.com.au/wp-content/uploads/2026/03/heart.png" alt="" aria-hidden="true">
+    <span class="section-eyebrow">Team Culture</span>
+    <h2>Bash Mantras, <span>Explained</span></h2>
+    <div class="mantra-grid">
+
+      <div class="mantra-card">
+        <span class="mantra-num">1</span>
+        <h4>Be Nice</h4>
+        <p>Out here, work and life meld into one for a few weeks a year. That makes it matter even more that crew are happy and working well together.</p>
+        <p>Our <strong>Workplace Harassment, Discrimination and Equal Employment Opportunity Policy</strong> sets out how we protect everyone from discrimination based on sex, race, age, disability, sexual orientation and the other characteristics covered under Federal law. Two things it covers:</p>
+        <ul>
+          <li><strong>Bullying</strong> takes many forms. Jokes, teasing, nicknames, emails, text messages, leaving people out, unfair work practices. The great Aussie put down is a bit on the nose at the Bash. You may think it's funny, and the person may play along to save face, but underneath they're probably feeling like crap. Just don't do it.</li>
+          <li><strong>Sexual harassment</strong> is unwelcome sexual behaviour that could be expected to make someone feel offended, humiliated or intimidated. It doesn't matter whether you meant it that way. It can be physical, verbal or written, and one incident is enough. Someone not objecting at the time is not the same as consent.</li>
+        </ul>
+      </div>
+
+      <div class="mantra-card">
+        <span class="mantra-num">2</span>
+        <h4>There's Always Time to Work Safely</h4>
+        <p>Strains and sprains are the most common injuries in Australian workplaces, usually from lifting loads that are too heavy. Team up rather than lifting solo, and use machinery when a load is still too heavy. Check with your team leader.</p>
+        <p>Lifting alone, use the <strong>SMART method.</strong></p>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Size up the load</li>
+          <li><span class="step-num">2</span>Make sure it's close to your body</li>
+          <li><span class="step-num">3</span>Always bend your knees</li>
+          <li><span class="step-num">4</span>Raise it with your legs</li>
+          <li><span class="step-num">5</span>Turn your feet in the direction you want to move</li>
+        </ol>
+        <p>The same thinking applies around forklifts and other machinery. Separation is the simplest way to keep yourself and your team safe. If you must work around machines, stay alert, wear your hi-vis vest, keep eye contact with the operator, never walk behind operating machinery, and look out for others. Same again for loading vehicles and for speed limits (<strong>10km/h on site, 5km/h in shared zones</strong>).</p>
+        <p>No task is urgent enough to justify cutting a safety corner.</p>
+      </div>
+
+      <div class="mantra-card">
+        <span class="mantra-num">3</span>
+        <h4>If You Don't Know, Ask!</h4>
+        <p>Concerns? Report them. Questions? Ask them. If something doesn't look right, or seems like an accident waiting to happen, head to the Event Office and tell a manager. Do whatever it takes to get their attention.</p>
+        <p>No one expects you to have all the answers, whether it's your first Bash or your tenth. With a crew this diverse there's always someone who can help, so ask for a second opinion. Double checking a trailer hitch or a load takes a minute.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="photo-band">
+    <img src="https://mundimundibash.com.au/wp-content/uploads/2026/03/2025-08-19-Mundi-Mundi-Bash-9147-4-scaled.jpg" alt="Mundi Mundi Bash on the plains">
+  </div>
+
+  <!-- ────────── PACKING LIST ────────── -->
+  <div class="content">
+    <div class="section-header">
+      <span class="section-eyebrow">Before You Leave Home</span>
+      <h2 class="orange">Bash Crew Packing List</h2>
+    </div>
+
+    <p>Here's the full crew packing list. Save it to your phone, or download the PDF below to print it and tick things off as you load the car.</p>
+
+    <div class="packing-image">
+      <img src="https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/images/f805d000-9309-8147-8200-011d3e5460bb.png" alt="Bash Crew Packing List">
+    </div>
+
+    <div class="download-card">
+      <div class="download-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#421718" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/>
+        </svg>
+      </div>
+      <div class="download-body">
+        <span class="download-label">Crew Packing List · PDF</span>
+        <p>Print it, tick it off, and you won't forget a thing.</p>
+        <a class="download-btn" href="https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/files/63786ee4-f794-50fa-a1be-cb0aa9e01183/Crew_Packing_List.pdf" target="_blank" rel="noopener">Download the List →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── HELI FLIGHTS ────────── -->
+  <div class="content lite-bg">
+    <div class="section-header">
+      <span class="section-eyebrow">Crew Perks</span>
+      <h2 class="gold">Crew Heli Flights</h2>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-photo">
+        <img src="https://mundimundibash.com.au/wp-content/uploads/2026/03/4T7A9890-2-scaled.jpg" alt="Helicopter flight over the Mundi Mundi Plains">
+      </div>
+      <div class="feature-text">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#421718" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 5h18"/><path d="M12 5v3"/>
+            <rect x="6" y="8" width="10" height="6" rx="3"/>
+            <path d="M16 11h5"/><path d="M21 11v3"/>
+            <path d="M9 14v4"/><path d="M6 18h8"/>
+          </svg>
+        </div>
+        <div>
+          <p class="lead">See the Bash from above with a six minute helicopter flight for <span class="price">$90 per person</span>, discounted from $125.</p>
+          <p>Flights need three passengers and are subject to the helicopter's total passenger weight limit.</p>
+          <p class="booking">Book in the plaza at the Heli Booking Tent with Sarah Fox</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── CREW VILLAGE ────────── -->
+  <div class="welcome-hero light">
+    <img class="doodle doodle-cacti" src="https://mundimundibash.com.au/wp-content/uploads/2026/03/cacti.png" alt="" aria-hidden="true">
+    <span class="hero-rule" style="background:var(--orange);"></span>
+    <span class="section-eyebrow">Crew Camp Guide · 2026 Season</span>
+    <h2>Welcome to the Crew Village</h2>
+    <p>It's your home away from home for the days or weeks you're on site working at the Bash. It's where we eat, sleep, clean off the dust and sweat, and hang out and relax after work. You'll find it tucked away over the road and behind the Event Office, on the eastern side of the Umberumberka Pathway.</p>
+  </div>
+
+  <!-- ────────── PHOTO STRIP ────────── -->
+  <div class="photo-strip">
+    <img src="https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/images/3e4edc9f-030d-7c67-6d8c-297e42519188.jpg" alt="Bash crew on site">
+    <img src="https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/images/50ee9a66-141d-bff4-643c-38a2562df66d.jpg" alt="Crew village at dusk">
+    <img src="https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/images/ce6d8fff-b0d3-2a7c-522f-7840cc7ebae8.jpg" alt="Sustainability crew on the dunny wagon">
+  </div>
+
+  <!-- ────────── CREW CAMP DETAIL ────────── -->
+  <div class="content alt-bg">
+
+    <div class="section-header">
+      <span class="section-eyebrow">Accommodation</span>
+      <h2 class="orange">Where Will I Sleep?</h2>
+    </div>
+
+    <p>We provide the spot, you provide your set up. Bring anything from a tent to a fully decked out 14 metre bus, and prepare for some serious rig envy along the way.</p>
+
+    <p>Whatever you bring, make sure it's stable and solid enough, and pegged down well enough, to withstand the huge winds we sometimes get out there. If you want to stay dry and put your clothes on standing up, we do recommend you leave the swag at home.</p>
+
+    <p>If you've already requested a desert tent or camp stretcher from Shenelle, you're all set.</p>
+
+    <p>Whether you bring your own tent or use one of ours, you'll still need to bring all your own bedding. Make sure it's warm and comfy.</p>
+
+    <div class="safety-box">
+      <div class="safety-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fdd700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="12" y1="7.5" x2="12" y2="8"/>
+        </svg>
+      </div>
+      <div>
+        <h4>Cold Nights Tip</h4>
+        <p>There's no power or heating and it can get cold out there at night. Our top tip for cold sleepers is to bring a hot water bottle and fill it up at the urn before bed.</p>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <span class="section-eyebrow">Food &amp; Drink</span>
+      <h2 class="pink">What Will I Eat and Where's My Coffee Fix?</h2>
+    </div>
+
+    <p>Our fabulous catering team will serve you three meals a day, from the night before your first shift to the morning after your last.</p>
+
+    <p>Brekky and dinner is served in the crew village, and at lunchtime, you'll load up a lunchbox with tasty morsels from the lunch table to have later.</p>
+
+    <p>We have sent out the catering email, please make sure to update your dietary requirements for our catering crew.</p>
+
+    <div class="safety-box" style="border-left-color: var(--red);">
+      <div class="safety-icon" style="background: var(--red);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+          <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+        </svg>
+      </div>
+      <div>
+        <h4>Barista Coffee in the Outback</h4>
+        <p>Make your own at the brew station in the crew camp kitchen. Fresh beans, dairy and plant based milk options. Your first cup of the day is on us. Remember to bring your own reusable cup.</p>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <span class="section-eyebrow">Facilities</span>
+      <h2 class="maroon">What Else Will I Find in Crew Camp?</h2>
+    </div>
+
+    <div class="crew-grid">
+
+      <div class="crew-card">
+        <div class="crew-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ef62a4" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16"/><circle cx="15.5" cy="15" r="1"/>
+          </svg>
+        </div>
+        <div class="crew-card-name">Crew Only Loos</div>
+        <div class="crew-card-desc">No waiting in line.</div>
+      </div>
+
+      <div class="crew-card">
+        <div class="crew-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f04c24" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v6"/><path d="M8 9h8"/><path d="M9 13v.5"/><path d="M12 13v.5"/><path d="M15 13v.5"/><path d="M10 17v.5"/><path d="M14 17v.5"/>
+          </svg>
+        </div>
+        <div class="crew-card-name">Showers</div>
+        <div class="crew-card-desc">For all paid crew. Just remember it's the outback, so go easy on the water.</div>
+        <span class="crew-card-note">Paid crew</span>
+      </div>
+
+      <div class="crew-card">
+        <div class="crew-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f38720" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 7h.5"/>
+          </svg>
+        </div>
+        <div class="crew-card-name">Washing Machine &amp; Line</div>
+        <div class="crew-card-desc">Bring your own laundry detergent.</div>
+        <span class="crew-card-note">BYO detergent</span>
+      </div>
+
+      <div class="crew-card">
+        <div class="crew-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f38720" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 10 12 4l9 6"/><path d="M5 10v10h14V10"/><path d="M9 20v-5h6v5"/>
+          </svg>
+        </div>
+        <div class="crew-card-name">Dining Hoecker</div>
+        <div class="crew-card-desc">For eating and hanging out after work.</div>
+      </div>
+
+      <div class="crew-card">
+        <div class="crew-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f04c24" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 8.8a16 16 0 0 1 20 0"/><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><line x1="12" y1="19.5" x2="12" y2="19.6"/>
+          </svg>
+        </div>
+        <div class="crew-card-name">Wifi &amp; Charging</div>
+        <div class="crew-card-desc">Available in the public areas of the crew village, with a charging station in the dining hoecker.</div>
+      </div>
+
+      <div class="crew-card">
+        <div class="crew-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#421718" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h6v16H4z"/><path d="M14 4h6v16h-6z"/><path d="M14 11h6"/><path d="M7 8v3"/>
+          </svg>
+        </div>
+        <div class="crew-card-name">Camp Kitchen</div>
+        <div class="crew-card-desc">Make a cuppa, heat up your lunch and store your own food or drinks in the fridge.</div>
+      </div>
+
+      <div class="crew-card">
+        <div class="crew-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ef62a4" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 1 6 6c0 4-3 5-3 9H9c0-4-3-5-3-9a6 6 0 0 1 6-6z"/><path d="M10 21h4"/>
+          </svg>
+        </div>
+        <div class="crew-card-name">Snacks on Tap</div>
+        <div class="crew-card-desc">Help yourself to bits and bobs supplied by the caterers (fruit, nuts, toast and things like that) whenever hunger strikes.</div>
+      </div>
+
+      <div class="crew-card">
+        <div class="crew-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f04c24" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 3h10l-1 8a4 4 0 0 1-8 0z"/><path d="M12 11v7"/><path d="M9 21h6"/>
+          </svg>
+        </div>
+        <div class="crew-card-name">Bring Your Own Favourites</div>
+        <div class="crew-card-desc">If you have special snacks you can't live without, bring them with you. Same goes if you like a beer or a glass of wine around the campfire.</div>
+        <span class="crew-card-note">BYO</span>
+      </div>
+
+    </div>
+
+    <div class="section-header">
+      <span class="section-eyebrow">What to Wear</span>
+      <h2 class="orange">What Is the Dress Code?</h2>
+    </div>
+
+    <p>Tough but comfy work clothing and layering are the looks this season. It can be very chilly at night, but dramatically warmer when the sun comes out, so be prepared. And make sure you wear closed shoes.</p>
+
+    <p>Do bring gumboots. Weather can change without much warning, and trust us, if it rains, you'll want them. A raincoat is a must, and waterproof pants if you have them. A head torch is indispensable to complete the look.</p>
+
+    <div class="section-header">
+      <span class="section-eyebrow">How We Communicate</span>
+      <h2 class="pink">Staying in Touch</h2>
+    </div>
+
+    <div class="comms-cards">
+
+      <div class="comms-card fb">
+        <div class="icon-row">
+          <div class="platform-icon">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </div>
+          <h4>Facebook</h4>
+        </div>
+        <p>We host the <a href="https://www.facebook.com/groups/170159779314960" target="_blank" rel="noopener" style="color:var(--pink);">Bash Crew Group</a> on Facebook, where we post news, changes, and tips for a safe and happy Bash experience. If you're not already on the group, please <strong style="color:var(--pink);">drop Shenelle a line.</strong> Make sure you've pinned the group at the top of your feed.</p>
+      </div>
+
+      <div class="comms-card email">
+        <div class="icon-row">
+          <div class="platform-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h4>Email</h4>
+        </div>
+        <p>If you're not on Facebook, don't worry. We'll make sure you hear the news by email. Your job offers have been sent out! But keep an eye on your inbox for your <strong style="color:var(--orange);">site safety induction</strong>. Do check your junk mail just in case.</p>
+      </div>
+
+      <div class="comms-card wa">
+        <div class="icon-row">
+          <div class="platform-icon">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <h4>WhatsApp</h4>
+        </div>
+        <p>Please <strong style="color:var(--red);">download WhatsApp</strong> before you arrive at site. We use it to keep in touch on site, along with crew meetings and the notice board. We'll make better use of WhatsApp for individual team comms rather than all crew messaging.</p>
+      </div>
+
+    </div>
+
+    <div class="section-header">
+      <span class="section-eyebrow">Action Required</span>
+      <h2 class="maroon">Your Bash To Do List</h2>
+    </div>
+
+    <div class="todo-box">
+      <h3>Job Offers and Catering Email Reminders!</h3>
+      <p>By now, you should have received your job offer and catering information in your inbox.</p>
+      <div class="todo-lead">Please take a few minutes to:</div>
+      <ul>
+        <li>Read through your job offer carefully</li>
+        <li>Update your dietary requirements if needed</li>
+        <li>Check your licences and details are up to date</li>
+        <li>Review the catering information</li>
+      </ul>
+      <p>Keep an eye on your inbox too. Online inductions are on their way, and they'll help get you Bash ready before you arrive on site.</p>
+    </div>
+
+  </div>
+
+  <!-- ────────── CLOSING PHOTO ────────── -->
+  <div style="font-size:0; line-height:0;">
+    <img src="https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/images/656f51fd-c21a-dd9d-48d6-2df16b323f61.jpg"
+         alt="Bash crew on the Mundi Mundi Plains"
+         style="width:100%; max-width:100%; height:auto; display:block;">
+  </div>
+
+  <!-- ────────── SIGN OFF ────────── -->
+  <div class="signoff">
+    <img class="doodle on-dark doodle-heart3" src="https://mundimundibash.com.au/wp-content/uploads/2026/03/heart3.png" alt="" aria-hidden="true">
+    <div class="signoff-line">Pack Well. Look After <span>Each Other.</span></div>
+    <p>That's the lot for Issue 3. Any questions before you head out, Shenelle is your first stop. We'll see you out there.</p>
+  </div>
+
+  <div class="rainbow-stripe">
+    <span class="rs-pink"></span><span class="rs-red"></span>
+    <span class="rs-orange"></span><span class="rs-yellow"></span>
+  </div>
+
+  <!-- ────────── ACKNOWLEDGEMENT OF COUNTRY ────────── -->
+  <div class="acknowledgement">
+    <span>Acknowledgement of Country</span>
+    <p>The Mundi Mundi Bash is held on Wilyakali Kiira Kiira, land of the Wilyakali Wiimpatja. We acknowledge the Wilyakali people as Traditional Owners of the Mundi Mundi Plains, and pay our respects to Elders past and present.</p>
+  </div>
+
+  <!-- ────────── FOOTER ────────── -->
+  <div class="footer">
+    <div class="footer-body">
+      <div class="footer-brand">
+        <span class="brand-name">Broken Hill <span>Mundi Mundi</span> Bash</span>
+        <span class="brand-sub">Rockin' the Plains · Outback NSW</span>
+      </div>
+      <div class="footer-center">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="10" fill="#fdd700"/>
+          <g stroke="#fdd700" stroke-width="2.5" stroke-linecap="round">
+            <line x1="30" y1="6" x2="30" y2="14"/>
+            <line x1="30" y1="46" x2="30" y2="54"/>
+            <line x1="6" y1="30" x2="14" y2="30"/>
+            <line x1="46" y1="30" x2="54" y2="30"/>
+            <line x1="13.4" y1="13.4" x2="19.2" y2="19.2"/>
+            <line x1="40.8" y1="40.8" x2="46.6" y2="46.6"/>
+            <line x1="46.6" y1="13.4" x2="40.8" y2="19.2"/>
+            <line x1="19.2" y1="40.8" x2="13.4" y2="46.6"/>
+          </g>
+          <path d="M10,48 Q20,42 30,44 Q40,46 50,42 L50,54 Q40,52 30,54 Q20,56 10,54 Z" fill="#ef62a4" opacity="0.75"/>
+        </svg>
+      </div>
+      <div class="footer-contact">
+        <p>New crew contact</p>
+        <p><a href="mailto:shenelle@omfgroup.com.au">shenelle@omfgroup.com.au</a></p>
+        <p>mundimundibash.com.au</p>
+        <p>Issue 3 · 2026 Season</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      Bash Staff News · Crew Newsletter · Issue 3 · 2026
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
