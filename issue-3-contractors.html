@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bash Staff News · Issue 3 · Crew Newsletter 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ────────────────────────────────────────
+     MMB 2026 BRAND TOKENS
+  ──────────────────────────────────────── */
+  :root {
+    --pink:      #ef62a4;
+    --red:       #f04c24;
+    --yellow:    #fdd700;
+    --orange:    #f38720;
+    --dark:      #421718;
+
+    --gold:      #fdd700;
+    --gold-lt:   #ffe95c;
+    --coral:     #f38720;
+    --wine:      #421718;
+    --maroon:    #421718;
+    --deep:      #421718;
+
+    --cream:     #f7f0e6;
+    --cream-lt:  #fdf6e8;
+    --off-white: #f1ebe2;
+    --sand:      #e4d7c4;
+    --text:      #421718;
+    --text-mid:  #5c3634;
+
+    --body-size: 1rem;
+
+    --head: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    --body: 'Work Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  img { max-width: 100%; }
+
+  body {
+    background: #f1ebe2;
+    font-family: var(--body);
+    color: var(--text);
+    font-size: var(--body-size);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mmb-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--off-white);
+  }
+
+  a { color: var(--wine); }
+
+  /* ────────────────────────────────────────
+     RAINBOW STRIPE
+  ──────────────────────────────────────── */
+  .rainbow-stripe { display: flex; height: 8px; width: 100%; }
+  .rainbow-stripe span { flex: 1; }
+  .rs-pink   { background: var(--pink); }
+  .rs-red    { background: var(--red); }
+  .rs-orange { background: var(--orange); }
+  .rs-yellow { background: var(--yellow); }
+
+  /* ────────────────────────────────────────
+     MASTHEAD
+  ──────────────────────────────────────── */
+  .masthead {
+    background: var(--deep);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead-photo {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/images/e2989c8b-98fc-99ef-6100-893579a4bb37.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    opacity: 0.8;
+  }
+
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(28,10,0,0.30) 0%, rgba(28,10,0,0.55) 60%, rgba(28,10,0,0.85) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 11px 32px;
+    border-bottom: 1px solid rgba(249,173,28,0.25);
+    position: relative;
+    z-index: 2;
+  }
+
+  .masthead-top span {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .masthead-logo {
+    display: block;
+    height: 44px;
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  .masthead-body {
+    padding: 34px 32px 30px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+
+  .masthead-title {
+    flex: 1;
+    min-width: 0;
+    padding-bottom: 4px;
+  }
+
+  .masthead-title img {
+    display: block;
+    width: 100%;
+    max-width: 470px;
+    height: auto;
+    border: 0;
+  }
+
+  .masthead-side {
+    width: 200px;
+    padding: 0 0 18px 20px;
+    text-align: right;
+    position: relative;
+    z-index: 2;
+  }
+
+  .masthead-side .year-big {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--orange);
+    display: block;
+    letter-spacing: 0.02em;
+  }
+
+  .masthead-side .tagline {
+    font-family: var(--head);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    display: block;
+    margin-top: 10px;
+    line-height: 1.7;
+  }
+
+  /* ────────────────────────────────────────
+     STAT BAR
+  ──────────────────────────────────────── */
+  .stat-bar {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--sand);
+    padding: 8px 20px 4px;
+  }
+
+  .stat-bar-item {
+    padding: 24px 14px 26px;
+    text-align: center;
+  }
+
+  .stat-bar-item .stat-rule {
+    display: block;
+    width: 30px;
+    height: 4px;
+    margin: 0 auto 16px;
+    border-radius: 2px;
+  }
+
+  .stat-bar-item:nth-child(1) .stat-rule { background: var(--pink); }
+  .stat-bar-item:nth-child(2) .stat-rule { background: var(--red); }
+  .stat-bar-item:nth-child(3) .stat-rule { background: var(--orange); }
+  .stat-bar-item:nth-child(4) .stat-rule { background: var(--yellow); }
+
+  .stat-bar-item .stat-num {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--dark);
+    display: block;
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .stat-bar-item .stat-lbl {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8a7168;
+    display: block;
+    margin-top: 9px;
+  }
+
+  /* ────────────────────────────────────────
+     WELCOME HERO
+  ──────────────────────────────────────── */
+  .welcome-hero {
+    background: var(--cream-lt);
+    padding: 56px 40px 58px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .welcome-hero::before {
+    content: '';
+    position: absolute;
+    top: -110px; right: -110px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(243,135,32,0.07);
+  }
+
+  .welcome-hero > * { position: relative; z-index: 1; }
+
+  .welcome-hero .hero-rule {
+    display: block;
+    width: 64px;
+    height: 5px;
+    background: var(--red);
+    margin: 0 0 26px;
+    border-radius: 3px;
+  }
+
+  .section-eyebrow {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--pink);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-eyebrow.on-dark { color: var(--gold); }
+  .welcome-hero .section-eyebrow { color: var(--pink); }
+
+  .welcome-hero h2 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+    color: var(--dark);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .welcome-hero p {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    line-height: 1.85;
+    color: var(--text-mid);
+    margin-bottom: 16px;
+    max-width: 640px;
+  }
+
+  .welcome-hero p:last-child { margin-bottom: 0; }
+  .welcome-hero p strong { color: var(--red); font-weight: 700; }
+
+  .welcome-hero.light {
+    background: var(--cream-lt);
+    border-left: 8px solid var(--orange);
+    border-top: 1px solid #e4d7c4;
+    border-bottom: 1px solid #e4d7c4;
+  }
+
+  .welcome-hero.light::before { background: rgba(249,153,28,0.08); }
+  .welcome-hero.light .section-eyebrow { color: var(--pink); }
+  .welcome-hero.light h2 { color: var(--wine); }
+  .welcome-hero.light p { color: var(--text-mid); }
+
+  /* ────────────────────────────────────────
+     DOODLES
+  ──────────────────────────────────────── */
+  .doodle {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    opacity: 0.09;
+    filter: brightness(0);
+  }
+
+  .doodle.on-dark {
+    filter: brightness(0) invert(1);
+    opacity: 0.11;
+  }
+
+  .doodle-camper { width: 230px; right: 26px;  bottom: -18px; transform: rotate(-5deg); }
+  .doodle-cacti  { width: 130px; right: 40px;  bottom: -10px; transform: rotate(4deg); }
+  .doodle-heart  { width: 150px; right: 44px;  top: 30px;     transform: rotate(9deg); }
+  .doodle-heart3 { width: 180px; left: 30px;   bottom: -24px; transform: rotate(-8deg); }
+
+  @media (max-width: 760px) {
+    .doodle-camper { width: 140px; right: -10px; }
+    .doodle-cacti  { width: 84px;  right: 10px; }
+    .doodle-heart  { width: 92px;  right: 14px; top: 16px; }
+    .doodle-heart3 { width: 110px; left: -14px; }
+  }
+
+  /* ────────────────────────────────────────
+     PHOTO BAND
+  ──────────────────────────────────────── */
+  .photo-band { font-size: 0; line-height: 0; }
+
+  .photo-band img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    object-position: center 55%;
+    display: block;
+  }
+
+  @media (max-width: 760px) {
+    .photo-band img { height: 220px; }
+  }
+
+  /* ────────────────────────────────────────
+     LAYOUT
+  ──────────────────────────────────────── */
+  .content { padding: 0 36px 40px; }
+  .content.alt-bg  { background: var(--cream); }
+  .content.lite-bg { background: var(--cream-lt); }
+
+  .content p {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: 15px;
+  }
+
+  .content p strong { color: var(--wine); font-weight: 600; }
+
+  .content ul {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    line-height: 1.9;
+    color: var(--text-mid);
+    padding-left: 22px;
+    margin-bottom: 18px;
+  }
+
+  .content ul li::marker { color: var(--orange); }
+
+  .two-col   { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  /* ────────────────────────────────────────
+     SECTION HEADERS
+  ──────────────────────────────────────── */
+  .section-header {
+    padding: 34px 0 14px;
+    border-bottom: 3px solid var(--maroon);
+    margin-bottom: 22px;
+  }
+
+  .section-header h2 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--wine);
+  }
+
+  .section-header h2.pink   { color: var(--pink); }
+  .section-header h2.orange { color: var(--orange); }
+  .section-header h2.maroon { color: var(--wine); }
+  .section-header h2.gold   { color: var(--red); }
+
+  /* ────────────────────────────────────────
+     HIGHLIGHT BAND
+  ──────────────────────────────────────── */
+  .highlight-band {
+    background: var(--red);
+    padding: 20px 28px 20px 34px;
+    margin: 22px 0;
+    position: relative;
+  }
+
+  .highlight-band::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: var(--gold);
+  }
+
+  .highlight-band p {
+    font-family: var(--body);
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ────────────────────────────────────────
+     ALERT BOX
+  ──────────────────────────────────────── */
+  .alert-box {
+    background: var(--wine);
+    color: #fff;
+    padding: 26px 28px;
+    margin: 22px 0;
+    border-left: 6px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .alert-box::after {
+    content: '!';
+    position: absolute;
+    right: 20px; top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 150px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .alert-box h3 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .alert-box p {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    line-height: 1.75;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .alert-box p:last-child { margin-bottom: 0; }
+  .alert-box p strong { color: var(--gold-lt); font-weight: 600; }
+
+  /* ────────────────────────────────────────
+     UPDATE TILES
+  ──────────────────────────────────────── */
+  .update-tiles {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+    margin: 18px 0;
+  }
+
+  .update-tile {
+    background: #fff;
+    padding: 22px 20px 20px;
+    border-top: 4px solid var(--pink);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .update-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(61,26,24,0.12);
+  }
+
+  .update-tile:nth-child(1) { border-top-color: var(--pink); }
+  .update-tile:nth-child(2) { border-top-color: var(--orange); }
+  .update-tile:nth-child(3) { border-top-color: var(--yellow); }
+  .update-tile:nth-child(4) { border-top-color: var(--gold); }
+
+  .update-tile .tile-num {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 38px;
+    line-height: 1;
+    color: var(--sand);
+    float: right;
+    margin-left: 10px;
+  }
+
+  .update-tile h4 {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wine);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .update-tile p,
+  .update-tile li {
+    font-family: var(--body);
+    font-size: 0.93rem;
+    line-height: 1.75;
+    color: var(--text-mid);
+  }
+
+  .update-tile ul { padding-left: 18px; margin: 0; }
+  .update-tile ul li { margin-bottom: 7px; }
+  .update-tile ul li::marker { color: var(--orange); }
+  .update-tile p { margin-bottom: 10px; clear: both; }
+
+  .tile-photo {
+    overflow: hidden;
+    min-height: 260px;
+    background: var(--maroon);
+    border-top: 4px solid var(--red);
+  }
+
+  .tile-photo img {
+    width: 100%;
+    height: 100%;
+    min-height: 256px;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+
+  .packing-image {
+    margin: 20px 0 0;
+    font-size: 0;
+    line-height: 0;
+    box-shadow: 0 6px 24px rgba(61,26,24,0.12);
+  }
+
+  .packing-image img { width: 100%; height: auto; display: block; }
+
+  /* ────────────────────────────────────────
+     DOWNLOAD CARD
+  ──────────────────────────────────────── */
+  .download-card {
+    background: var(--maroon);
+    border-left: 6px solid var(--gold);
+    padding: 32px 32px;
+    margin: 22px 0 8px;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+  }
+
+  .download-icon {
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .download-icon svg { width: 30px; height: 30px; }
+
+  .download-label {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .download-body p {
+    font-family: var(--body);
+    font-size: 1.02rem;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.7;
+    margin: 0 0 16px;
+  }
+
+  .download-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--deep);
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 4px;
+  }
+
+  .download-btn:hover { background: var(--gold-lt); }
+
+  /* ────────────────────────────────────────
+     SAFETY / TIP BOX
+  ──────────────────────────────────────── */
+  .safety-box {
+    background: #fdf6e8;
+    border-left: 5px solid var(--gold);
+    padding: 20px 24px;
+    margin: 22px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .safety-icon {
+    width: 52px; height: 52px;
+    background: var(--maroon);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .safety-icon svg { width: 26px; height: 26px; }
+
+  .safety-box h4 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wine);
+    margin-bottom: 6px;
+  }
+
+  .safety-box p {
+    font-family: var(--body);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-mid);
+    margin: 0;
+  }
+
+  /* ────────────────────────────────────────
+     COMMS CARDS
+  ──────────────────────────────────────── */
+  .comms-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 18px 0;
+  }
+
+  .comms-card {
+    padding: 20px;
+    border-top: 4px solid;
+    background: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .comms-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 26px rgba(61,26,24,0.12);
+  }
+
+  .comms-card.fb    { border-top-color: var(--pink); }
+  .comms-card.email { border-top-color: var(--orange); }
+  .comms-card.wa    { border-top-color: var(--red); }
+
+  .comms-card .icon-row {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 10px;
+  }
+
+  .comms-card .platform-icon {
+    width: 38px; height: 38px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .comms-card.fb    .platform-icon { background: var(--pink); }
+  .comms-card.email .platform-icon { background: var(--orange); }
+  .comms-card.wa    .platform-icon { background: var(--red); }
+
+  .comms-card .platform-icon svg { width: 20px; height: 20px; }
+
+  .comms-card h4 {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--maroon);
+  }
+
+  .comms-card p {
+    font-family: var(--body);
+    font-size: 0.93rem;
+    line-height: 1.75;
+    color: var(--text-mid);
+    margin-top: 10px;
+  }
+
+  .comms-card a { font-weight: 600; text-decoration: underline; }
+
+  /* ────────────────────────────────────────
+     FEATURE CARD (heli)
+  ──────────────────────────────────────── */
+  .feature-card {
+    background: #fff;
+    border-top: 4px solid var(--yellow);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(66,23,24,0.10);
+  }
+
+  .feature-photo { font-size: 0; line-height: 0; min-width: 0; overflow: hidden; }
+
+  .feature-photo img {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .feature-text {
+    min-width: 0;
+    padding: 34px 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .feature-card .feature-icon {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .feature-card .feature-icon svg { width: 30px; height: 30px; }
+
+  .feature-card .lead {
+    font-family: var(--body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--maroon);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .feature-card .lead .price { color: var(--red); font-weight: 700; }
+
+  .feature-card p {
+    font-family: var(--body);
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+
+  .feature-card .booking {
+    font-family: var(--head);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wine);
+    margin: 0;
+  }
+
+  /* ────────────────────────────────────────
+     TO-DO BOX
+  ──────────────────────────────────────── */
+  .todo-box {
+    background: var(--maroon);
+    border-left: 6px solid var(--gold);
+    padding: 28px 30px;
+    margin: 4px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .todo-box > * { position: relative; z-index: 1; }
+
+  .todo-box::after {
+    content: '✓';
+    position: absolute;
+    right: 18px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 150px;
+    line-height: 1;
+    color: rgba(255,255,255,0.05);
+    z-index: 0;
+  }
+
+  .todo-box h3 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .todo-box p {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    color: rgba(255,255,255,0.92);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .todo-box .todo-lead {
+    font-family: var(--head);
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 10px;
+  }
+
+  .todo-box ul { list-style: none; padding: 0; margin: 0 0 18px; }
+
+  .todo-box ul li {
+    font-family: var(--body);
+    font-size: 0.98rem;
+    color: #fff;
+    line-height: 1.7;
+    padding: 5px 0 5px 30px;
+    position: relative;
+  }
+
+  .todo-box ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .todo-box p:last-child { margin-bottom: 0; }
+
+  /* ────────────────────────────────────────
+     CREW VILLAGE GRID
+  ──────────────────────────────────────── */
+  .crew-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 28px;
+  }
+
+  .crew-card {
+    background: #fff;
+    padding: 24px 20px;
+    border-top: 4px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .crew-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(61,26,24,0.16);
+  }
+
+  .crew-card:nth-child(4n+1) { border-color: var(--pink); }
+  .crew-card:nth-child(4n+2) { border-color: var(--red); }
+  .crew-card:nth-child(4n+3) { border-color: var(--orange); }
+  .crew-card:nth-child(4n+4) { border-color: var(--yellow); }
+
+  .crew-card-icon { line-height: 0; }
+  .crew-card-icon svg { width: 30px; height: 30px; }
+
+  .crew-card-name {
+    font-family: var(--head);
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--maroon);
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+  }
+
+  .crew-card-desc {
+    font-family: var(--body);
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    flex: 1;
+  }
+
+  .crew-card-note {
+    display: inline-block;
+    font-family: var(--head);
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 5px 11px;
+    border-radius: 30px;
+    background: #fdf6e8;
+    color: var(--wine);
+    align-self: flex-start;
+  }
+
+  /* ────────────────────────────────────────
+     BASH MANTRAS
+  ──────────────────────────────────────── */
+  .mantra-section {
+    background: var(--cream);
+    padding: 64px 36px;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid #e4d7c4;
+    border-bottom: 1px solid #e4d7c4;
+  }
+
+  .mantra-section h2 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+    text-transform: uppercase;
+    color: var(--wine);
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    margin-bottom: 34px;
+  }
+
+  .mantra-section h2 span { color: var(--orange); }
+
+  .mantra-section .section-eyebrow,
+  .mantra-section h2,
+  .mantra-grid { position: relative; z-index: 1; }
+
+  .mantra-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+
+  .mantra-card {
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(61,26,24,0.07);
+    padding: 40px 38px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-top: 5px solid;
+  }
+
+  .mantra-card:nth-child(1) { border-color: var(--pink); }
+  .mantra-card:nth-child(2) { border-color: var(--orange); }
+  .mantra-card:nth-child(3) { border-color: var(--red); }
+
+  .mantra-num {
+    font-family: var(--head);
+    font-size: 4.4rem;
+    line-height: 0.8;
+    font-weight: 900;
+    display: block;
+  }
+
+  .mantra-card:nth-child(1) .mantra-num { color: var(--pink); }
+  .mantra-card:nth-child(2) .mantra-num { color: var(--orange); }
+  .mantra-card:nth-child(3) .mantra-num { color: var(--red); }
+
+  .mantra-card h4 {
+    font-family: var(--head);
+    font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.15;
+    color: var(--wine);
+    margin: 0 0 4px;
+  }
+
+  .mantra-card p,
+  .mantra-card li {
+    font-family: var(--body);
+    font-size: 1.06rem;
+    color: var(--text-mid);
+    line-height: 1.85;
+    margin: 0;
+  }
+
+  .mantra-card ul { padding-left: 20px; margin: 6px 0 0; }
+  .mantra-card ul li { margin-bottom: 16px; }
+  .mantra-card ul li::marker { color: var(--orange); }
+  .mantra-card strong { color: var(--wine); font-weight: 700; }
+  .mantra-card p + p { margin-top: 14px; }
+
+  .steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .steps-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-family: var(--body);
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .steps-list li .step-num {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 1rem;
+    color: #fff;
+    background: var(--orange);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  /* ────────────────────────────────────────
+     SIGN OFF
+  ──────────────────────────────────────── */
+  .signoff {
+    background: var(--dark);
+    padding: 52px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .signoff .signoff-line,
+  .signoff p { position: relative; z-index: 1; }
+
+  .signoff .signoff-line {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .signoff .signoff-line span { color: var(--gold); }
+
+  .signoff p {
+    font-family: var(--body);
+    font-size: var(--body-size);
+    color: rgba(255,255,255,0.9);
+    line-height: 1.8;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  /* ────────────────────────────────────────
+     ACKNOWLEDGEMENT OF COUNTRY
+  ──────────────────────────────────────── */
+  .acknowledgement {
+    background: var(--cream);
+    padding: 30px 36px;
+    text-align: center;
+  }
+
+  .acknowledgement span {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--wine);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .acknowledgement p {
+    font-family: var(--body);
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: var(--text-mid);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  /* ────────────────────────────────────────
+     FOOTER
+  ──────────────────────────────────────── */
+  .footer { background: var(--deep); }
+
+  .footer-body {
+    padding: 44px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .footer-brand .brand-name {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #fff;
+    display: block;
+    line-height: 1.5;
+  }
+
+  .footer-brand .brand-name span { color: var(--gold); }
+
+  .footer-brand .brand-sub {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    margin-top: 8px;
+    display: block;
+  }
+
+  .footer-center { text-align: center; }
+  .footer-center svg { width: 54px; height: 54px; opacity: 0.85; }
+
+  .footer-contact { text-align: right; }
+
+  .footer-contact p {
+    font-family: var(--body);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.75);
+    line-height: 2;
+    margin: 0;
+  }
+
+  .footer-contact a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .footer-bottom {
+    background: rgba(0,0,0,0.35);
+    padding: 11px 32px;
+    text-align: center;
+    font-family: var(--head);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+  }
+
+  /* ────────────────────────────────────────
+     PHOTO STRIP
+  ──────────────────────────────────────── */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    font-size: 0;
+    line-height: 0;
+  }
+
+  .photo-strip img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ────────────────────────────────────────
+     RESPONSIVE
+  ──────────────────────────────────────── */
+  @media (max-width: 760px) {
+    .masthead-top { padding: 10px 20px; flex-wrap: wrap; gap: 6px; }
+    .masthead-top span { font-size: 10px; letter-spacing: 0.18em; }
+    .masthead-logo { height: 32px; }
+    .masthead-body { flex-direction: column; align-items: flex-start; padding: 26px 20px 24px; }
+    .masthead-title img { max-width: 100%; }
+    .masthead-side { width: 100%; text-align: left; padding: 14px 0 16px; }
+    .masthead-side .year-big { font-size: 46px; }
+
+    .stat-bar { grid-template-columns: 1fr 1fr; }
+    .stat-bar-item:nth-child(2) { border-right: none; }
+    .stat-bar-item:nth-child(1),
+    .stat-bar-item:nth-child(2) { border-bottom: 1px solid #e4d7c4; }
+    .stat-bar-item { padding: 20px 12px; }
+
+    .welcome-hero,
+    .mantra-section,
+    .signoff,
+    .acknowledgement { padding-left: 22px; padding-right: 22px; }
+
+    .welcome-hero { padding: 40px 22px 42px; }
+    .mantra-section { padding-top: 40px; padding-bottom: 40px; }
+
+    .content { padding: 0 22px 32px; }
+
+    .comms-cards,
+    .two-col,
+    .three-col { grid-template-columns: 1fr; }
+
+    .update-tiles { gap: 12px; }
+    .update-tile { padding: 18px 16px 16px; }
+    .update-tile p, .update-tile li { font-size: 0.86rem; }
+    .tile-photo, .tile-photo img { min-height: 200px; }
+
+    .mantra-section { padding: 44px 22px; }
+    .mantra-card { padding: 30px 24px; }
+    .mantra-card p, .mantra-card li { font-size: 1rem; }
+    .mantra-num { font-size: 3.4rem; }
+
+    .crew-grid { grid-template-columns: 1fr 1fr; }
+
+    .feature-card { grid-template-columns: 1fr; }
+    .feature-photo img { min-height: 210px; }
+    .feature-text { flex-direction: column; gap: 16px; padding: 26px 22px; }
+    .download-card { flex-direction: column; align-items: flex-start; gap: 18px; padding: 26px 22px; }
+
+    .safety-box { flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px; }
+
+    .photo-strip { grid-template-columns: 1fr; }
+    .photo-strip img { height: 220px; }
+
+    .footer-body { grid-template-columns: 1fr; text-align: center; gap: 18px; }
+    .footer-contact { text-align: center; }
+    .footer-bottom { letter-spacing: 0.16em; font-size: 8px; }
+
+    .alert-box::after,
+    .todo-box::after { display: none; }
+  }
+
+  @media (max-width: 430px) {
+    .crew-grid { grid-template-columns: 1fr; }
+    .update-tiles { grid-template-columns: 1fr; }
+    .stat-bar { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ────────────────────────────────────────
+     LIGHTBOX
+  ──────────────────────────────────────── */
+  #mmb-lb {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(10,4,4,0.94);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #mmb-lb.open { display: flex; }
+  #mmb-lb-img {
+    max-width: 88vw;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 12px 56px rgba(0,0,0,0.7);
+    transition: opacity 0.15s;
+  }
+  .lb-btn {
+    position: absolute;
+    background: rgba(255,255,255,0.10);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+    line-height: 1;
+    transition: background 0.15s;
+  }
+  .lb-btn:hover { background: rgba(255,255,255,0.22); }
+  #lb-close { top: 18px; right: 20px; font-size: 1.6rem; padding: 8px 14px; }
+  #lb-prev  { top: 50%; left: 18px;  font-size: 2rem; padding: 16px 20px; transform: translateY(-50%); }
+  #lb-next  { top: 50%; right: 18px; font-size: 2rem; padding: 16px 20px; transform: translateY(-50%); }
+  #lb-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 18px;
+  }
+  #lb-counter {
+    font-family: var(--head);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    min-width: 60px;
+    text-align: center;
+  }
+  #lb-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange);
+    color: #fff;
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 11px 22px;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+  #lb-dl:hover { background: var(--red); color: #fff; }
+  .gallery-photo { cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="mmb-wrap">
+
+  <!-- ────────── MASTHEAD ────────── -->
+  <div class="masthead">
+    <div class="masthead-photo"></div>
+    <div class="masthead-top">
+      <span>Crew Newsletter</span>
+      <img class="masthead-logo" src="https://mundimundibash.com.au/wp-content/uploads/2022/03/MMB26_Logo_for-Web-2.svg" alt="Mundi Mundi Bash">
+    </div>
+    <div class="masthead-body">
+      <div class="masthead-title">
+        <img src="https://mcusercontent.com/91cf1ae0ce46ab46a9772ec0f/images/dfd3fa7d-7b7f-9e5b-c5dd-dc311fc2d367.png"
+             alt="Bash Staff News">
+      </div>
+      <div class="masthead-side">
+        <span class="year-big">2026</span>
+        <span class="tagline">Latest &amp; Trusted<br>News from the Plains</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rainbow-stripe">
+    <span class="rs-pink"></span><span class="rs-red"></span>
+    <span class="rs-orange"></span><span class="rs-yellow"></span>
+  </div>
+
+  <!-- ────────── STAT BAR ────────── -->
+  <div class="stat-bar">
+    <div class="stat-bar-item">
+      <span class="stat-rule"></span>
+      <span class="stat-num">2026</span>
+      <span class="stat-lbl">Season</span>
+    </div>
+    <div class="stat-bar-item">
+      <span class="stat-rule"></span>
+      <span class="stat-num">Issue 3</span>
+      <span class="stat-lbl">Newsletter</span>
+    </div>
+    <div class="stat-bar-item">
+      <span class="stat-rule"></span>
+      <span class="stat-num">Thank You</span>
+      <span class="stat-lbl">Crewbies 💜</span>
+    </div>
+    <div class="stat-bar-item">
+      <span class="stat-rule"></span>
+      <span class="stat-num">Gold</span>
+      <span class="stat-lbl">NSW Tourism Award</span>
+    </div>
+  </div>
+
+
+  <!-- ────────── THANK YOU ────────── -->
+  <div style="background: var(--dark); padding: 48px 40px 52px; position: relative; overflow: hidden; text-align: center;">
+    <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(to right, var(--pink), var(--red), var(--orange), var(--yellow));"></div>
+    <img class="doodle on-dark doodle-heart3" src="https://mundimundibash.com.au/wp-content/uploads/2026/03/heart3.png" alt="" aria-hidden="true">
+    <span style="font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:18px;">To the 2026 Crew — Thank You 💜</span>
+    <h2 style="font-family:var(--head);font-weight:900;font-size:clamp(2rem,4.5vw,3.2rem);text-transform:uppercase;color:#fff;letter-spacing:0.01em;line-height:1.1;margin-bottom:32px;">You Should Be <span style="color:var(--gold);">Incredibly Proud.</span></h2>
+    <div style="max-width:640px;margin:0 auto;text-align:left;">
+      <p style="font-family:var(--body);font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.88);margin-bottom:16px;">We hope you've all made your way home, had a chance to scrape the mud off and get some well-earned rest after a mammoth few weeks at the Bash.</p>
+      <p style="font-family:var(--body);font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.88);margin-bottom:16px;">There's no sugar-coating it — this was one of the toughest Mundi Mundi Bashes we've ever delivered.</p>
+      <p style="font-family:var(--body);font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.88);margin-bottom:16px;">This year challenged us in so many ways. Conditions changed, plans changed, and there were plenty of moments that asked more of everyone than we ever expected.</p>
+      <p style="font-family:var(--body);font-size:1.1rem;font-weight:600;line-height:1.9;color:#fff;margin-bottom:16px;">But through all of it, this crew kept going.</p>
+      <p style="font-family:var(--body);font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.88);margin-bottom:16px;">You adapted, backed each other, solved problems, kept your sense of humour and continued to make decisions with our Bashers and the wider team front of mind.</p>
+      <p style="font-family:var(--body);font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.88);margin-bottom:16px;"><strong>To our returning crew,</strong> thank you for continuing to come back year after year and sticking with us through all the challenges that come with putting on an event like this. Your experience and knowledge are invaluable, and we're incredibly grateful for the way you share that knowledge, show our newer crew the ropes and help keep the Bash spirit going from one year to the next.</p>
+      <p style="font-family:var(--body);font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.88);margin-bottom:16px;"><strong>And to our first-time crew,</strong> what a year to join us! You were thrown into plenty of unexpected situations, took on new challenges and jobs you probably never imagined you'd be doing, and handled it all with a great attitude. Thank you for jumping in, giving things a crack and becoming part of the team so quickly.</p>
+      <p style="font-family:var(--body);font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.88);margin-bottom:16px;">The Bash simply doesn't happen without an unbelievably dedicated bunch of humans (and the odd doggo 🐶) behind it.</p>
+      <p style="font-family:var(--body);font-size:1.1rem;font-weight:600;line-height:1.9;color:var(--gold);margin-bottom:16px;">Every one of you should be incredibly proud of this one.</p>
+      <p style="font-family:var(--body);font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.88);margin-bottom:0;">Thank you for sticking together, looking after each other and helping us bring the 2026 Mundi Mundi Bash to life. 💜</p>
+    </div>
+  </div>
+
+
+  <!-- ────────── GREG DONOVAN ────────── -->
+  <div style="background:var(--cream);padding:48px 40px;border-top:4px solid var(--orange);position:relative;overflow:hidden;">
+    <img class="doodle doodle-heart" src="https://mundimundibash.com.au/wp-content/uploads/2026/03/heart.png" alt="" aria-hidden="true" style="top:auto;bottom:420px;transform:rotate(9deg);">
+    <div style="position:relative;z-index:1;max-width:760px;margin:0 auto;">
+      <span style="font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:0.24em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:12px;">From Head Honcho</span>
+      <h2 style="font-family:var(--head);font-weight:900;font-size:clamp(1.8rem,3.8vw,2.6rem);color:var(--dark);line-height:1.1;margin-bottom:32px;text-transform:uppercase;letter-spacing:0.01em;">A Special <span style="color:var(--red);">Thank You</span> 🫶🏼</h2>
+      <div style="border-left:5px solid var(--orange);padding-left:28px;margin-bottom:36px;">
+        <p style="font-family:var(--body);font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-style:italic;margin-bottom:14px;">The acronym for Outback Music Festival Group is <strong style="color:var(--dark);">OMFG</strong>. This seems pretty appropriate for this year's Mundi Mundi Bash! :) It will certainly be an edition of the Bash that will be <strong style="color:var(--dark);">remembered for many years to come</strong>.</p>
+        <p style="font-family:var(--body);font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-style:italic;margin-bottom:14px;">Considering the difficulties and challenges we experienced this year, the general feedback from everyone involved—patrons, artists and others—has been <strong style="color:var(--dark);">extremely positive</strong>.</p>
+        <p style="font-family:var(--body);font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-style:italic;margin-bottom:14px;">As organisers, we were judged not so much on what Mother Nature delivered, but on <strong style="color:var(--dark);">how we responded to and managed the situation</strong>. And the response from our management team, crew, volunteers and contractors was <strong style="color:var(--dark);">first-rate</strong>; as an event team we still managed to shine in such adverse conditions.</p>
+        <p style="font-family:var(--body);font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-style:italic;margin-bottom:14px;">Situations like the one we experienced have a high potential to damage the festival's brand and reputation. However due to everyone's amazing efforts—where we all <strong style="color:var(--dark);">went above and beyond</strong>—if anything <strong style="color:var(--dark);">our reputation has actually been enhanced</strong>. That's incredible.</p>
+        <p style="font-family:var(--body);font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-style:italic;margin-bottom:14px;">We also learned a lot this year from situations we've never dealt with before. This provides us with the opportunity to review things in detail and make necessary changes so we can be <strong style="color:var(--dark);">as prepared as possible for future challenges that may come our way</strong>.</p>
+        <p style="font-family:var(--body);font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-style:italic;margin-bottom:14px;">So whilst it was difficult, I think it has in fact probably strengthened the festival.</p>
+        <p style="font-family:var(--body);font-size:1.02rem;line-height:1.85;color:var(--text-mid);font-style:italic;margin-bottom:0;">I wish to reiterate everything outlined in the earlier crew thankyou. <strong style="color:var(--dark);">You are all amazing</strong>, and I am so proud to be supported by everyone involved. <strong style="color:var(--dark);">You should be so proud of your efforts.</strong></p>
+      </div>
+      <div style="max-width:700px;margin:0 auto;">
+        <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(66,23,24,0.14);margin-bottom:14px;">
+          <img src="photos/greg.jpg" alt="Greg Donovan" style="width:100%;height:322px;object-fit:cover;object-position:center 70%;display:block;">
+        </div>
+        <span style="font-family:var(--head);font-weight:900;font-size:1rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--dark);display:block;line-height:1.3;">Greg Donovan</span>
+        <span style="font-family:var(--body);font-size:0.85rem;color:var(--text-mid);letter-spacing:0.02em;">Managing Director · Mundi Mundi Bash</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── CREW GALLERY ────────── -->
+  <div style="background:var(--dark);padding:44px 40px 42px;position:relative;overflow:hidden;text-align:center;">
+    <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(to right,var(--pink),var(--red),var(--orange),var(--yellow));"></div>
+    <img class="doodle on-dark doodle-heart3" src="https://mundimundibash.com.au/wp-content/uploads/2026/03/heart3.png" alt="" aria-hidden="true" style="left:auto;right:30px;transform:rotate(8deg);">
+    <span style="font-family:var(--head);font-size:0.7rem;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);">2026 Crew &mdash; We Built This City</span>
+    <h2 style="font-family:var(--head);font-size:clamp(1.7rem,4vw,2.4rem);font-weight:900;color:#fff;margin:10px 0 14px;line-height:1.15;">The Crew That <span style="color:var(--gold);">Made It Happen</span></h2>
+    <p style="font-family:var(--body);color:rgba(255,255,255,0.72);max-width:560px;margin:0 auto;font-size:1rem;line-height:1.7;">Behind every great Bash is an incredible crew. Here's a look at the legends who showed up, gave everything, and made the 2026 Mundi Mundi Bash one for the ages.</p>
+  </div>
+
+  <div style="background:var(--cream-lt);padding:32px 28px 36px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:220px;gap:18px;">
+      <img class="gallery-photo" src="photos/crew-31.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-32.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);grid-row:span 2;">
+      <img class="gallery-photo" src="photos/crew-33.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-34.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-35.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-07.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);grid-row:span 2;">
+      <img class="gallery-photo" src="photos/crew-13.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-09.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-10.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-11.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-12.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-23.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-19.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);grid-row:span 2;">
+      <img class="gallery-photo" src="photos/crew-15.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-16.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-18.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);grid-row:span 2;">
+      <img class="gallery-photo" src="photos/crew-14.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-17.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-20.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-21.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-22.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-08.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-24.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-25.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-26.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-27.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-28.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-29.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-30.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-01.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-02.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-03.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-04.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-05.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+      <img class="gallery-photo" src="photos/crew-06.jpg" alt="2026 Bash Crew" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;box-shadow:0 2px 14px rgba(66,23,24,0.10);">
+    </div>
+  </div>
+
+  <!-- ────────── YOUTUBE ────────── -->
+  <div style="background:var(--dark);padding:44px 40px 42px;position:relative;overflow:hidden;text-align:center;">
+    <div style="position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(to right,var(--pink),var(--red),var(--orange),var(--yellow));"></div>
+    <img class="doodle on-dark doodle-cacti" src="https://mundimundibash.com.au/wp-content/uploads/2026/03/cacti.png" alt="" aria-hidden="true" style="right:auto;left:40px;bottom:10px;transform:rotate(-4deg);">
+    <span style="font-family:var(--head);font-size:0.7rem;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);">Missing the Plains Already?</span>
+    <h2 style="font-family:var(--head);font-size:clamp(1.7rem,4vw,2.4rem);font-weight:900;color:#fff;margin:10px 0 12px;line-height:1.15;">Watch it all on <span style="color:var(--gold);">YouTube</span></h2>
+    <p style="font-family:var(--body);color:rgba(255,255,255,0.72);max-width:560px;margin:0 auto;font-size:1rem;line-height:1.7;">Highlights from the Plains, exclusive artist interviews and plenty more! Subscribe so you don't miss a thing — and keep an eye out, you might just spot a familiar face along the way.</p>
+  </div>
+  <div style="background:var(--cream-lt);padding:0 0 16px;">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width:660px;margin:0 auto;background-color:#fdf6e8;">
+  <tbody>
+    <tr>
+      <td style="padding:36px 44px 0 44px;">
+        <a href="https://www.youtube.com/@mundimundibash" target="_blank" style="display:block;text-decoration:none;">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-radius:12px;overflow:hidden;">
+            <tbody>
+              <tr>
+                <td background="https://mundimundibash.com.au/wp-content/uploads/2026/08/2026-08-19-MMB-7949-scaled.jpeg" bgcolor="#3d1a18" valign="middle" align="center" style="background-image:url('https://mundimundibash.com.au/wp-content/uploads/2026/08/2026-08-19-MMB-7949-scaled.jpeg');background-size:cover;background-position:center;height:322px;border-radius:12px;">
+                  <table border="0" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+                    <tbody>
+                      <tr>
+                        <td align="center" valign="middle" style="width:84px;height:84px;background-color:#f04c24;border-radius:50%;font-family:Arial,sans-serif;font-size:36px;line-height:84px;color:#ffffff;text-align:center;">▶</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:32px 44px 0 44px;text-align:center;">
+        <p style="margin:0;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5c3634;">Start with these</p>
+      </td>
+    </tr>
+
+    <!-- DAY 1 -->
+    <tr>
+      <td style="padding:18px 44px 0 44px;">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td width="40%" valign="middle" style="padding:0 20px 0 0;">
+                <a href="https://youtu.be/zlzrQw9e2IE?si=rt-G2sOD6ghvktQF" target="_blank" style="display:block;font-size:0;line-height:0;">
+                  <img src="https://img.youtube.com/vi/zlzrQw9e2IE/mqdefault.jpg" width="209" alt="Day 1 wrap" style="display:block;width:100%;height:auto;border:0;border-radius:10px;">
+                </a>
+              </td>
+              <td width="60%" valign="middle" style="padding:0;text-align:left;">
+                <p style="margin:0 0 4px 0;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:17px;font-weight:700;line-height:1.3;color:#421718;">Day 1 wrap</p>
+                <p style="margin:0;font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#421718;">Thursday on the Plains, from Big Blue Day to the last song. <a href="https://youtu.be/zlzrQw9e2IE?si=rt-G2sOD6ghvktQF" target="_blank" style="color:#f04c24;font-weight:700;text-decoration:none;"><br>Watch →</a></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+    <!-- DAY 2 -->
+    <tr>
+      <td style="padding:22px 44px 0 44px;">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td width="40%" valign="middle" style="padding:0 20px 0 0;">
+                <a href="https://youtu.be/yIU1nVPmzXY?si=lR94k2yJ7ac83PwB" target="_blank" style="display:block;font-size:0;line-height:0;">
+                  <img src="https://img.youtube.com/vi/yIU1nVPmzXY/mqdefault.jpg" width="209" alt="Day 2 wrap" style="display:block;width:100%;height:auto;border:0;border-radius:10px;">
+                </a>
+              </td>
+              <td width="60%" valign="middle" style="padding:0;text-align:left;">
+                <p style="margin:0 0 4px 0;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:17px;font-weight:700;line-height:1.3;color:#421718;">Day 2 wrap</p>
+                <p style="margin:0;font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#421718;">Friday: the Bash Choir, the Mad Max Procession and a big night of music. <a href="https://youtu.be/yIU1nVPmzXY?si=lR94k2yJ7ac83PwB" target="_blank" style="color:#f04c24;font-weight:700;text-decoration:none;"><br>Watch →</a></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+
+    <!-- DAY 3 -->
+    <tr>
+      <td style="padding:22px 44px 0 44px;">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td width="40%" valign="middle" style="padding:0 20px 0 0;">
+                <a href="https://www.youtube.com/watch?v=zC9zVxoZLE8" target="_blank" style="display:block;font-size:0;line-height:0;">
+                  <img src="https://img.youtube.com/vi/zC9zVxoZLE8/mqdefault.jpg" width="209" alt="Day 3 wrap" style="display:block;width:100%;height:auto;border:0;border-radius:10px;">
+                </a>
+              </td>
+              <td width="60%" valign="middle" style="padding:0;text-align:left;">
+                <p style="margin:0 0 4px 0;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:17px;font-weight:700;line-height:1.3;color:#421718;">Day 3 wrap</p>
+                <p style="margin:0;font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#421718;">Saturday: the Mundi Mundi Run and the final night under the stars. <a href="https://www.youtube.com/watch?v=zC9zVxoZLE8" target="_blank" style="color:#f04c24;font-weight:700;text-decoration:none;"><br>Watch →</a></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+    <!-- JOHN BUTLER -->
+    <tr>
+      <td style="padding:22px 44px 0 44px;">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td width="40%" valign="middle" style="padding:0 20px 0 0;">
+                <a href="https://youtu.be/OA_ZcA9INpg?si=J3gpcFaYvqI7pxUZ" target="_blank" style="display:block;font-size:0;line-height:0;">
+                  <img src="https://img.youtube.com/vi/OA_ZcA9INpg/mqdefault.jpg" width="209" alt="John Butler live at the Mundi Mundi Bash" style="display:block;width:100%;height:auto;border:0;border-radius:10px;">
+                </a>
+              </td>
+              <td width="60%" valign="middle" style="padding:0;text-align:left;">
+                <p style="margin:0 0 4px 0;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:17px;font-weight:700;line-height:1.3;color:#421718;">John Butler, live on the Plains</p>
+                <p style="margin:0;font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#421718;">Full performance from Saturday night. <a href="https://youtu.be/OA_ZcA9INpg?si=J3gpcFaYvqI7pxUZ" target="_blank" style="color:#f04c24;font-weight:700;text-decoration:none;"><br>Watch →</a></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+    <!-- BIG BLUE DAY -->
+    <tr>
+      <td style="padding:22px 44px 0 44px;">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td width="40%" valign="middle" style="padding:0 20px 0 0;">
+                <a href="https://youtu.be/oLRejPb8tjI?si=grw9cZRCC9fjv3QA" target="_blank" style="display:block;font-size:0;line-height:0;">
+                  <img src="https://img.youtube.com/vi/oLRejPb8tjI/mqdefault.jpg" width="209" alt="Big Blue Day 2026" style="display:block;width:100%;height:auto;border:0;border-radius:10px;">
+                </a>
+              </td>
+              <td width="60%" valign="middle" style="padding:0;text-align:left;">
+                <p style="margin:0 0 4px 0;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:17px;font-weight:700;line-height:1.3;color:#421718;">Big Blue Day</p>
+                <p style="margin:0;font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#421718;">Thousands of Bashers in blue, from above. <a href="https://youtu.be/oLRejPb8tjI?si=grw9cZRCC9fjv3QA" target="_blank" style="color:#f04c24;font-weight:700;text-decoration:none;"><br>Watch →</a></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:34px 44px 52px 44px;position:relative;" align="center">
+        <img class="doodle doodle-camper" src="https://mundimundibash.com.au/wp-content/uploads/2026/03/camper2.png" alt="" aria-hidden="true" style="bottom:10px;right:-60px;z-index:2;">
+        <a href="https://www.youtube.com/@mundimundibash" target="_blank" style="display:inline-block;padding:15px 34px;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;background-color:#f04c24;border-radius:50px;position:relative;z-index:1;">Subscribe on YouTube</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+
+  <!-- ────────── HOPE TO SEE YOU ────────── -->
+  <div style="position:relative;overflow:hidden;line-height:0;font-size:0;">
+    <img src="photos/hope-to-see-you.jpg" alt="2026 Mundi Mundi Bash Crew" style="width:100%;height:680px;object-fit:cover;object-position:center 40%;display:block;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(66,23,24,0.88) 0%,rgba(66,23,24,0.30) 50%,transparent 100%);"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:4px 44px 8px;text-align:center;line-height:1.2;">
+      <p style="font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:0.7rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin:0 0 12px;">Until We Meet Again</p>
+      <h2 style="font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;font-size:clamp(1.6rem,4vw,2.8rem);font-weight:900;color:#fff;margin:0;line-height:1.2;text-transform:uppercase;letter-spacing:0.01em;">Thank you Crewbies<br><span style="color:var(--yellow);">We Hope to See You at the Next Bash!</span></h2>
+    </div>
+  </div>
+
+  <!-- ────────── FOOTER ────────── -->
+  <div class="footer">
+    <div style="height:5px;background:linear-gradient(to right,var(--pink),var(--red),var(--orange),var(--yellow));"></div>
+    <div class="footer-body">
+      <div class="footer-brand">
+        <span class="brand-name">Broken Hill <span>Mundi Mundi</span> Bash</span>
+        <span class="brand-sub">Rockin' the Plains · Outback NSW</span>
+      </div>
+      <div class="footer-center">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="10" fill="#fdd700"/>
+          <g stroke="#fdd700" stroke-width="2.5" stroke-linecap="round">
+            <line x1="30" y1="6" x2="30" y2="14"/>
+            <line x1="30" y1="46" x2="30" y2="54"/>
+            <line x1="6" y1="30" x2="14" y2="30"/>
+            <line x1="46" y1="30" x2="54" y2="30"/>
+            <line x1="13.4" y1="13.4" x2="19.2" y2="19.2"/>
+            <line x1="40.8" y1="40.8" x2="46.6" y2="46.6"/>
+            <line x1="46.6" y1="13.4" x2="40.8" y2="19.2"/>
+            <line x1="19.2" y1="40.8" x2="13.4" y2="46.6"/>
+          </g>
+          <path d="M10,48 Q20,42 30,44 Q40,46 50,42 L50,54 Q40,52 30,54 Q20,56 10,54 Z" fill="#ef62a4" opacity="0.75"/>
+        </svg>
+      </div>
+      <div class="footer-contact">
+        <p>New crew contact</p>
+        <p><a href="mailto:shenelle@omfgroup.com.au">shenelle@omfgroup.com.au</a></p>
+        <p>mundimundibash.com.au</p>
+        <p>Issue 3 · 2026 Season</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      Bash Staff News · Crew Newsletter · Issue 3 · 2026
+    </div>
+  </div>
+
+</div>
+
+<!-- ────────── LIGHTBOX ────────── -->
+<div id="mmb-lb">
+  <button class="lb-btn" id="lb-close" onclick="lbClose()">&#x2715;</button>
+  <button class="lb-btn" id="lb-prev"  onclick="lbNav(-1)">&#8249;</button>
+  <img id="mmb-lb-img" src="" alt="Crew photo">
+  <button class="lb-btn" id="lb-next"  onclick="lbNav(1)">&#8250;</button>
+  <div id="lb-bar">
+    <span id="lb-counter"></span>
+    <a id="lb-dl" href="" download>&#8595; Download Photo</a>
+  </div>
+</div>
+<script>
+(function(){
+  var photos = [];
+  var idx = 0;
+  var lb    = document.getElementById('mmb-lb');
+  var lbImg = document.getElementById('mmb-lb-img');
+  var lbDl  = document.getElementById('lb-dl');
+  var lbCnt = document.getElementById('lb-counter');
+
+  function init(){
+    photos = Array.from(document.querySelectorAll('.gallery-photo'));
+    photos.forEach(function(img, i){
+      img.addEventListener('click', function(){ lbOpen(i); });
+    });
+  }
+
+  function lbOpen(i){
+    idx = i;
+    lbShow();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function lbShow(){
+    var src = photos[idx].src;
+    lbImg.src = src;
+    lbDl.href = src;
+    lbDl.setAttribute('download', src.split('/').pop());
+    lbCnt.textContent = (idx+1) + ' / ' + photos.length;
+  }
+
+  function lbNav(dir){
+    idx = (idx + dir + photos.length) % photos.length;
+    lbShow();
+  }
+
+  function lbClose(){
+    lb.classList.remove('open');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  lb.addEventListener('click', function(e){ if(e.target === lb) lbClose(); });
+
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape')     lbClose();
+    if(e.key==='ArrowLeft')  lbNav(-1);
+    if(e.key==='ArrowRight') lbNav(1);
+  });
+
+  window.lbClose = lbClose;
+  window.lbNav   = lbNav;
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
+
+</body>
+</html>
